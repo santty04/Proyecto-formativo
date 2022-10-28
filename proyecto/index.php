@@ -8,7 +8,7 @@
             <div class="col-md-4 offset-md-4 my-5">
                 <h2 class="text-center">
                     <i class="fa fa-dragon"></i>
-                    Web App Pokemons
+                    Web App Pokemon
                 </h2>
                 <hr>
                 <form action="" method="POST">
