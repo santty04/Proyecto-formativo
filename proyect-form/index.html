@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .container{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .left{
+            margin-top: 80px;
+            margin-left: -40px;
+            background-color: #0f0;
+            width: 687px;
+            height: 924px;
+            
+        }
+        .right{
+            background-color: #00f;
+            width: 50px;
+        }
+        .logo{
+            width: px;
+        }
+        
+    </style>
+</head>
+<body>
+<?php $title = 'Login' ?>
+    <?php require 'config/app.php' ?>
+    <?php include 'config/database.php'  ?>
+    <?php include 'includes/header.inc' ?>
+    <?php include 'includes/redirect.inc' ?>
+    <!--  -->
+    <section>
+        <div class="container">
+            <div class="left">
+                <img class="logo" src="public/images/logoLiceo.png" alt="">
+                <div class="slider">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div class="right">
+                <h2>Liceo Aprender</h2>
+                <label for="inputIdent">Email</label>
+                <input type="text">
+                
+                <label for="inputIdent"> Contraseña</label>
+                <input type="text">
+                
+                <button>Entrar</button>
+            </div>
+        </div>
+    </section>
+                <?php
+                    if ($_POST) {
+                        $email = $_POST['email'];
+                        $pass  = md5($_POST['password']);
+
+                        if (login($conx, $email, $pass)) {
+                            if ($_SESSION['trole'] == 'Admin') {
+                                echo "<script>
+                                        window.location.replace('dashboard-admin.php')
+                                      </script>";
+                            } else {
+                                echo "<script>
+                                        window.location.replace('dashboard-rector.php')
+                                      </script>";
+                            }
+                        } else {
+                            $_SESSION['error'] = "Email or Password are incorrect!";
+                        }
+
+                    }
+                ?>
+            </div>
+        </section>
+        <?php $conx = null; ?>
+    </main>
+    <!--  -->
+    <?php include 'includes/scripts.inc' ?>
+    <!--  -->
+    <script>
+        $(document).ready(function () {
+            <?php if(isset($_SESSION['error'])): ?>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: '<?php echo $_SESSION['error'] ?>',
+                showConfirmButton: false,
+                timer: 2500
+            })
+            <?php endif ?>
+            <?php unset($_SESSION['error']) ?>
+            // - - - - - - - - - -
+        })
+    </script>
+</body>
+</html>
+</body>
+</html>
