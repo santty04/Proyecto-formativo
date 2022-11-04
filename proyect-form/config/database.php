@@ -139,7 +139,7 @@
     // - - - - - - - - - - - - - - - - - - - - - - - - 
     // usuarios
 
-    // Login Trainer
+    // Login 
     function login($conx, $email, $pass) {
         try {
             $sql = "SELECT * FROM usuarios 
@@ -151,11 +151,11 @@
             $stm->bindparam(":pass", $pass);
             $stm->execute();
             if($stm->rowCount() > 0) {
-                $trainer = $stm->fetch(PDO::FETCH_ASSOC);
-                $_SESSION['tid']    = $trainer['id'];
-                $_SESSION['temail'] = $trainer['email'];
-                $_SESSION['trole']  = $trainer['role'];
-                $_SESSION['tphoto'] = $trainer['photo'];
+                $user = $stm->fetch(PDO::FETCH_ASSOC);
+                $_SESSION['tid']    = $user['id'];
+                $_SESSION['temail'] = $user['email'];
+                $_SESSION['trole']  = $user['role'];
+                $_SESSION['tphoto'] = $user['photo'];
                 return true;
             } else {
                 return false;

@@ -1,87 +1,65 @@
     <?php $title = 'Dashboard' ?>
     <?php require 'config/app.php' ?>
     <?php include 'config/database.php'  ?>
-    <?php include 'includes/header.inc' ?>
-    <?php include 'includes/navbar.inc' ?>
     <?php include 'includes/security.inc' ?>
     <?php include 'includes/protect-admin.inc' ?>
     <!--  -->
-    <main class="container">
-        <section class="row">
-            <div class="col-md-8 offset-md-2 my-5">
-                <h1 class="text-center">
-                    <i class="fa fa-cog"></i>
-                    Dashboard
-                </h1>
-                <hr>
-
-                <div class="row mt-5">
-                  <div class="col-md-4 col-xs-6 mb-2">
-                    <div class="card bg-dark text-light">
-                      <div class="card-body">
-                        <h3 class="card-title">
-                            <i class="fa fa-paw fa-2x"></i>
-                            Pokemons
-                        </h3>
-                        <p class="card-text mt-4">
-                            Administrate all information about pokemons 
-                        </p>
-                        <a href="pokemons/index.php" class="btn btn-danger form-control">
-                            <i class="fa fa-circle-chevron-right"></i>
-                            Enter
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-4 col-xs-6 mb-2">
-                    <div class="card bg-dark text-light">
-                      <div class="card-body">
-                        <h3 class="card-title">
-                            <i class="fa fa-users fa-2x"></i>
-                            Trainers
-                        </h3>
-                        <p class="card-text mt-4">
-                            Administrate all information about trainers 
-                        </p>
-                        <a href="trainers/index.php" class="btn btn-danger form-control">
-                            <i class="fa fa-circle-chevron-right"></i>
-                            Enter
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-4 col-xs-6">
-                    <div class="card bg-dark text-light">
-                      <div class="card-body">
-                        <h3 class="card-title">
-                            <i class="fa fa-landmark fa-2x"></i>
-                            Gyms
-                        </h3>
-                        <p class="card-text mt-4">
-                            Administrate all information about gyms 
-                        </p>
-                        <a href="gyms/index.php" class="btn btn-danger form-control">
-                            <i class="fa fa-circle-chevron-right"></i>
-                            Enter
-                        </a>
-                      </div>
-                    </div>
-                  </div>
 
 
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home-Admin</title>
+    <link rel="stylesheet" href="public/css/panel-admin.css">
+</head>
+    <header>
+        <h2>Base de datos | Liceo Aprender</h2>
+        <ul>
+            <li>
+                <a href="<?php echo $base_url . '/' ?>close.php">
+                    <i class="fa fa-times"></i>
+                    Close Session
+                </a>
+            </li>
+        </ul>
+        <div class="banner">
+            <img class="users" src="images/users.svg" alt="">
+            <h1>Bienvenido al panel administrativo</h1>
+            <img class="logo" src="images/marco-logo.png" alt="">
+        </div>
+    </header>
+<body>
+    <div>
+        <div class="grid-container">
+            <div class="matricula box">
+                <img src="images/user-plus.svg" alt="" class="user-plus">
+                <h3>Matricula</h3>
+                <hr class="hr-matricula">
+                <button class="btn-matricula">Entrar
+                    <a href=""></a>
+                </button>
             </div>
-        </section>
-        <?php $conx = null; ?>
-    </main>
-    <!--  -->
-    <?php include 'includes/scripts.inc' ?>
-    <!--  -->
-    <script>
-        $(document).ready(function () {
-
-        })
-    </script>
+            <div class="estudiantes box">
+                <img src="images/user.svg" alt="" class="user">
+                <h3>Estudiantes</h3>
+                <hr class="hr-estudiantes">
+                <button class="btn-estudiantes">Entrar
+                    <a href=""></a>
+                </button>
+            </div>
+            <div class="pagos box">
+                <img src="images/pagos.svg" alt="" class="pago">
+                <h3>Pagos</h3>
+                <hr class="hr-pagos">
+                <button class="btn-pagos">Entrar
+                    <a href=""></a>
+                </button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

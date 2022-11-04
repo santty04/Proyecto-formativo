@@ -9,5 +9,6 @@
     <link rel="stylesheet" href="<?=$css?>/bootstrap.min.css">
     <link rel="stylesheet" href="<?=$css?>/fontawesome.min.css">
     <link rel="stylesheet" href="<?=$css?>/fonts.css">
+    <link rel="stylesheet" href="<?=$css?>/login.css">
 </head>
 <body>

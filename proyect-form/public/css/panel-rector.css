@@ -1,0 +1,99 @@
+* {
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+select{
+    position: absolute;
+    width: 277px;
+    height: 37px;
+    left: 1571px;
+    top: 23px;
+    font-size: 1rem;
+    color: #fff;
+    background: #373232;
+    font-weight: bold;
+    border-radius: 10px;
+}
+h2 {
+    color: #373232;
+    margin-left: 50px;
+}
+/* banner */
+.banner{
+    position: absolute;
+    background-color: #039041;
+    width: 1782px;
+    height: 400px;
+    border-radius:20px ;
+    margin-left: 50px;
+}
+.banner img.users {
+    position: relative;
+    left: 3%;
+    top: 10%;
+}
+.banner h1{
+    position: relative;
+    color: #fff;
+    opacity: 80%;
+    font-size: 80px;
+    line-height: 121px;    
+    width: 822px;
+    height: 381px;
+    left: 200px;
+    top: -150px;       
+}
+.banner img.logo {
+    position: relative;
+    width: 893px;
+    height: 811px;
+    left: 900px;
+    top: -650px;
+}
+/* grid */
+.grid-container {
+    display: grid;
+    grid-template-columns: 350px;
+    margin-top: 420px;
+    justify-content: center;
+    align-items: center;       
+    gap: 50px;    
+}
+/* BOX */
+.box {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    border:2px solid #373232;
+    border-radius: 10px;
+    opacity: 80%;
+}
+/* BUSCAR ESTUDIANTE */
+.estudiantes .user {
+    position: relative;
+    width: 180px;
+    height: 157px;
+    margin-left: 22%;
+    margin-top: 25px;
+}
+.estudiantes h3 {
+    top: 815px;
+    font-size: 30px;
+    color:#373232 ;
+    margin-left: 25%;
+}
+.hr-estudiantes{
+    border: 1px solid #373232;
+}
+.btn-estudiantes {
+    width: 211px;
+    height: 60px;
+    margin-left: 45px;
+    margin-top: 15px;
+    background: #039041;
+    border-radius: 40px;
+    border: none;
+    color: #fff;
+    font-size: 25px;
+    cursor: pointer;
+}

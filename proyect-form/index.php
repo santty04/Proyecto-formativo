@@ -4,46 +4,39 @@
     <?php include 'includes/header.inc' ?>
     <?php include 'includes/redirect.inc' ?>
     <!--  -->
-    <main class="container">
-        <section class="row">
-            <div class="col-md-4 offset-md-4 my-5">
-                <h2 class="text-center">
-                    <i class="fa fa-dragon"></i>
-                    Web App Pokemons
-                </h2>
-                <hr>
-                <form action="" method="POST">
-                    <div class="mb-3 text-center">
-                        <figure class="figure">
-                            <img src="public/images/pokeball.png" width="240" id="preview" class="figure-img img-fluid img-thumbnail rounded">
-                        </figure>
-                    </div>
-                    <h3 class="text-center">
-                        <i class="fa fa-lock"></i>
-                        Login for trainers
-                    </h3>
-                    <hr>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email:</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="ash@gmail.com" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password:</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="secret" required>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-dark btn-lg form-control">
-                            <i class="fa fa-lock-open"></i>
-                            Login
+
+
+
+    <div class="container">
+        <div class="main-login">
+            <div class="left-login">
+                <img src="public/images/logo-liceo.png" alt="" class="logo-liceo">
+                <div class="slider">
+                    <ul>
+                        <li><img src="public/images/1.jpg" alt=""></li>
+                        <li><img src="public/images/2.jpg" alt=""></li>
+                        <li><img src="public/images/3.jpg" alt=""></li>
+                        <li><img src="public/images/4.jpg" alt=""></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="rigth-login">
+                <div class="card-login">
+                    <form action="" method="POST">
+                        <h1 class="login">LIA</h1>
+                        <div class="textfield">
+                        <label for="email" >Correo electrónico:</label>
+                        <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="textfield">
+                        <label for="password" >Contraseña:</label>
+                        <input type="password"  id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn-login">
+                            Ingresar
                         </button>
-                        
-                        <a href="register.php" class="btn btn-light btn-lg form-control mt-2">
-                            <i class="fa fa-users"></i>
-                            Register
-                        </a>
-                    </div>
-				</form>
+                    </form>
+                </div>
                 <?php
                     if ($_POST) {
                         $email = $_POST['email'];
@@ -66,12 +59,10 @@
                     }
                 ?>
             </div>
-        </section>
-        <?php $conx = null; ?>
-    </main>
-    <!--  -->
+            <?php $conx = null; ?>
+        </div>
+    </div>
     <?php include 'includes/scripts.inc' ?>
-    <!--  -->
     <script>
         $(document).ready(function () {
             <?php if(isset($_SESSION['error'])): ?>
@@ -89,3 +80,6 @@
     </script>
 </body>
 </html>
+
+<!-- ------------------------------------ -->
+
