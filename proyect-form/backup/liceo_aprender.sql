@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-10-2022 a las 18:51:36
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Tiempo de generación: 10-11-2022 a las 23:45:24
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,8 @@ CREATE TABLE `acudiente` (
   `apellidos` varchar(25) NOT NULL,
   `num_documento` int(11) NOT NULL,
   `direccion` varchar(25) NOT NULL,
-  `telefono` int(11) NOT NULL
+  `telefono` int(11) NOT NULL,
+  `estudiante_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -44,6 +45,7 @@ CREATE TABLE `acudiente` (
 
 CREATE TABLE `detalles` (
   `id` int(11) NOT NULL,
+  `nombre` varchar(25) NOT NULL,
   `pago_id` int(11) DEFAULT NULL,
   `valor` int(11) DEFAULT NULL,
   `mes` varchar(25) DEFAULT NULL
@@ -121,7 +123,8 @@ INSERT INTO `usuarios` (`id`, `name`, `email`, `photo`, `password`, `role`) VALU
 -- Indices de la tabla `acudiente`
 --
 ALTER TABLE `acudiente`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `estudiante_id` (`estudiante_id`);
 
 --
 -- Indices de la tabla `detalles`
@@ -199,6 +202,12 @@ ALTER TABLE `usuarios`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `acudiente`
+--
+ALTER TABLE `acudiente`
+  ADD CONSTRAINT `acudiente_ibfk_1` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiantes` (`id`);
 
 --
 -- Filtros para la tabla `detalles`
