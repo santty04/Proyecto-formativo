@@ -2,14 +2,6 @@
     overflow: hidden;
     font-family: Arial, Helvetica, sans-serif;
 }
-a{
-    color: #fff;
-    font-style: none;
-    text-decoration: none;
-}
-.close{
-    color: #000;
-}
 select{
     position: absolute;
     width: 277px;
@@ -20,8 +12,7 @@ select{
     color: #fff;
     background: #373232;
     font-weight: bold;
-    border-radius: 40px;
-    text-indent: 20px; 
+    border-radius: 10px;
 }
 h2 {
     color: #373232;
@@ -62,7 +53,7 @@ h2 {
 /* grid */
 .grid-container {
     display: grid;
-    grid-template-columns: 350px 350px 350px;
+    grid-template-columns: 350px;
     margin-top: 420px;
     justify-content: center;
     align-items: center;       
@@ -76,35 +67,6 @@ h2 {
     border:2px solid #373232;
     border-radius: 10px;
     opacity: 80%;
-}
-/* MATRICULAS */
-.matricula .user-plus {
-    position: relative;
-    width: 180px;
-    height: 157px;
-    margin-left: 25%;
-    margin-top: 25px;
-}
-.matricula h3 {
-    top: 815px;
-    font-size: 30px;
-    color:#373232 ;
-    margin-left: 25%;
-}
-.hr-matricula{
-    border: 1px solid #373232;
-}
-.btn-matricula {
-    width: 211px;
-    height: 60px;
-    margin-left: 45px;
-    margin-top: 15px;
-    background: #039041;
-    border-radius: 40px;
-    border: none;
-    color: #fff;
-    font-size: 25px;
-    cursor: pointer;
 }
 /* BUSCAR ESTUDIANTE */
 .estudiantes .user {
@@ -124,35 +86,6 @@ h2 {
     border: 1px solid #373232;
 }
 .btn-estudiantes {
-    width: 211px;
-    height: 60px;
-    margin-left: 45px;
-    margin-top: 15px;
-    background: #039041;
-    border-radius: 40px;
-    border: none;
-    color: #fff;
-    font-size: 25px;
-    cursor: pointer;
-}
-/* PAGO */
-.pagos .pago {
-    position: relative;
-    width: 180px;
-    height: 157px;
-    margin-left: 22%;
-    margin-top: 25px;
-}
-.pagos h3 {
-    top: 815px;
-    font-size: 30px;
-    color:#373232 ;
-    margin-left: 35%;
-}
-.hr-pagos{
-    border: 1px solid #373232;
-}
-.btn-pagos {
     width: 211px;
     height: 60px;
     margin-left: 45px;

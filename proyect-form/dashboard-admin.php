@@ -20,7 +20,7 @@
         <h2>Base de datos | Liceo Aprender</h2>
         <ul>
             <li>
-                <a href="<?php echo $base_url . '/' ?>close.php">
+                <a href="<?php echo $base_url . '/' ?>close.php" class="close">
                     <i class="fa fa-times"></i>
                     Close Session
                 </a>
@@ -38,26 +38,26 @@
             <div class="matricula box">
                 <img src="images/user-plus.svg" alt="" class="user-plus">
                 <h3>Matricula</h3>
-                <hr class="hr-matricula">
-                <button class="btn-matricula">Entrar
-                    <a href=""></a>
-                </button>
+                <hr class="hr-matricula"> 
+                    <a href="matricula.php">
+                        <button class="btn-matricula">Entrar </button>
+                    </a>
             </div>
             <div class="estudiantes box">
                 <img src="images/user.svg" alt="" class="user">
                 <h3>Estudiantes</h3>
                 <hr class="hr-estudiantes">
-                <button class="btn-estudiantes">Entrar
-                    <a href=""></a>
-                </button>
+                    <a href="search-student.php">
+                        <button class="btn-estudiantes">Entrar</button>
+                    </a>       
             </div>
             <div class="pagos box">
                 <img src="images/pagos.svg" alt="" class="pago">
                 <h3>Pagos</h3>
                 <hr class="hr-pagos">
-                <button class="btn-pagos">Entrar
-                    <a href=""></a>
-                </button>
+                    <a href="pagos.php">
+                        <button class="btn-pagos">Entrar</button>
+                    </a>                
             </div>
         </div>
     </div>

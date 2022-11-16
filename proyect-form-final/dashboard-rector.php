@@ -35,9 +35,9 @@
                 <img src="images/user.svg" alt="" class="user">
                 <h3>Estudiantes</h3>
                 <hr class="hr-estudiantes">
-                <a href="search-student-rector.php">
-                    <button class="btn-estudiantes">Entrar</button>
-                </a>
+                <button class="btn-estudiantes">Entrar
+                    <a href=""></a>
+                </button>
             </div>
         </div>
     </div>
