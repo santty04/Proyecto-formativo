@@ -9,23 +9,44 @@
     }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - 
-    // Pokemons
+    // Estudiante
 
-    // Insert Pokemon
-    function addStudent($conx, $name, $type, $strength, $stamina, $speed, $accuracy, $image, $trainer_id) {
+    // Insert Estudiante
+    function addStudent($conx, $nombre, $apellidos, $num_documento, $fecha_nacimiento, $genero, $jornada, $grado) {
         try {
-            $sql = "INSERT INTO pokemons (name, type, strength, stamina, speed, accuracy,
-                    image, trainer_id) VALUES (:name, :type, :strength, :stamina, :speed, 
-                    :accuracy, :image, :trainer_id)";
+            $sql = "INSERT INTO estudiante (nombre, apellidos, num_documento, fecha_nacimiento, genero, jornada,
+                    grado) VALUES (:nombre, :apellidos, :num_documento, :fecha_nacimiento, :genero, 
+                    :jornada, :grado)";
             $stm = $conx->prepare($sql);
-            $stm->bindparam(":name", $name);
-            $stm->bindparam(":type", $type);
-            $stm->bindparam(":strength", $strength);
-            $stm->bindparam(":stamina", $stamina);
-            $stm->bindparam(":speed", $speed);
-            $stm->bindparam(":accuracy", $accuracy);
-            $stm->bindparam(":image", $image);
-            $stm->bindparam(":trainer_id", $trainer_id);
+            $stm->bindparam(":name", $nombre);
+            $stm->bindparam(":apellidos", $apellidos);
+            $stm->bindparam(":num_documento", $num_documento);
+            $stm->bindparam(":fecha_nacimiento", $fecha_nacimiento);
+            $stm->bindparam(":genero", $genero);
+            $stm->bindparam(":jornada", $jornada);
+            $stm->bindparam(":grado", $grado);
+            if($stm->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+    }
+
+    function addAcudent($conx, $nombreAcudiente, $apellidosAcudiente, $num_documentoAcudiente, $direccionAcudiente, $telefonoAcudiente     ) {
+        try {
+            $sql = "INSERT INTO estudiante (nombre, apellidos, num_documento, fecha_nacimiento, genero, jornada,
+                    grado) VALUES (:nombre, :apellidos, :num_documento, :fecha_nacimiento, :genero, 
+                    :jornada, :grado)";
+            $stm = $conx->prepare($sql);
+            $stm->bindparam(":name", $nombreAcudiente);
+            $stm->bindparam(":apellidos", $apellidosAcudiente);
+            $stm->bindparam(":num_documento", $num_documentoAcudiente);
+            $stm->bindparam(":fecha_nacimiento", $direccionAcudiente);
+            $stm->bindparam(":genero", $telefonoAcudiente);
             if($stm->execute()) {
                 return true;
             } else {

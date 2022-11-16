@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="public/css/bootstrap-reboot.min.css">
     <link rel="stylesheet" href="public/css/bootstrap.min.css">
 
-    <title>Busqueda de estudiantes</title>
+    <title>Matricula de estudiantes</title>
     <style>
         * {
             overflow: hidden;
@@ -227,27 +227,27 @@
         <div class="name-student">
             <label for="">Nombre del estudiante:</label>
             <br>
-            <input type="text" class="inpt">
+            <input type="text" class="inpt" id="nombre" name="nombre">
         </div>
         <div class="apellido-student">
             <label for="">Apellido del estudiante:</label>
             <br>
-            <input type="text" class="inpt">
+            <input type="text" class="inpt" id="apellidos" name="apellidos">
         </div>
         <div class="document-student">
             <label for="">N° de documento del estudiante:</label>
             <br>
-            <input type="number" class="inpt">
+            <input type="number" class="inpt" id="num_documento" name="num_documento">
         </div>
         <div class="fecha-nacimiento">
             <label for="">Fecha de nacimiento:</label>
             <br>
-            <input type="date" class="inpt">
+            <input type="date" class="inpt" id="fecha_nacimiento">
         </div>
         <div class="genero">
             <label for="">Genero:</label>
             <br>
-            <select name="" id="">
+            <select name="genero" id="genero">
                 <option selected disabled value="">Selecciona..</option>
                 <option value="masculino">Masculino</option>
                 <option value="femenino">Femenino</option>
@@ -256,7 +256,7 @@
         <div class="jornada">
             <label for="">Jornada:</label>
             <br>
-            <select name="" id="">
+            <select name="jornada" id="jornada">
                 <option selected disabled value="">Selecciona..</option>
                 <option value="mañana">Mañana</option>
                 <option value="completa">Completa</option>
@@ -265,7 +265,7 @@
         <div class="grado">
             <label for="">Grado:</label>
             <br>
-            <select name="" id="">
+            <select name="grado" id="grado">
                 <option selected disabled value="">Selecciona..</option>
                 <option value="sala-cuna">Salacuna</option>
                 <option value="caminadores">Caminadores</option>
@@ -289,33 +289,68 @@
         <div class="name-acudiente">
             <label for="">Nombre del acudiente: </label>
             <br>
-            <input  type="text" class="inpt">
+            <input  type="text" class="inpt" id="nombreAcudiente" name="nombreAcudiente">
         </div>
         <div class="apellido-acudiente">
             <label for="">Apellido del acudiente: </label>
             <br>
-            <input  type="text" class="inpt">
+            <input  type="text" class="inpt" id="apellidosAcudiente" name="apellidosAcudiente">
         </div>
         <div class="n-acudiente">
             <label for="">N° documento del acudiente: </label>
             <br>
-            <input type="number" class="inpt">
+            <input type="number" class="inpt" id="num_documentoAcudiente" name="num_documentoAcudiente">
         </div>
         <div class="direccion">
             <label for="">Direccion: </label>
             <br>
-            <input type="text" class="inpt">
+            <input type="text" class="inpt" id="direccionAcudiente" name="direccionAcudiente">
         </div>
         <div class="telefono">
             <label for="">Telefono: </label>
             <br>
-            <input type="number" class="inpt">
+            <input type="number" class="inpt" id="telefonoAcudiente" name="telefonoAcudiente">
         </div>
         <button class="enviar-btn-search">
             Enviar
         </button>
     </div>
     </form>
-    
+    <?php
+    if($_POST) {
+                        //var_dump($_POST);
+                        //echo "<hr>";
+                        //var_dump($_FILES);
+                        // Estudiante
+                        $nombre              = $_POST['nombre'];
+                        $apellidos           = $_POST['apellidos'];
+                        $num_documento       = $_POST['num_documento'];
+                        $fecha_nacimiento    = $_POST['fecha_nacimiento'];
+                        $genero              = $_POST['genero'];
+                        $jornada             = $_POST['jornada'];
+                        $grado               = $_POST['grado'];
+
+                        // Acudiente
+                        $nombreAcudiente              = $_POST['nombreAcudiente'];
+                        $apellidosAcudiente           = $_POST['apellidosAcudiente'];
+                        $num_documentoAcudiente       = $_POST['num_documentoAcudiente'];
+                        $direccionAcudiente           = $_POST['direccionAcudiente'];
+                        $telefonoAcudiente            = $_POST['telefonoAcudiente'];
+                        // Upload Image
+                        // $path  = "../public/images/";
+                        // $image = $path.time().".".pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+                        
+                        if(addStudent($conx, $nombre, $apellidos, $num_documento, $fecha_nacimiento, $genero, $jornada, $grado)) {
+                            addAcudent($conx, $nombreAcudiente, $apellidosAcudiente, $num_documentoAcudiente, $direccionAcudiente, $telefonoAcudiente);
+                            $_SESSION['message'] = "Estudiante : $nombre ha sido agregado!";
+                            echo "<script>
+                                    window.location.replace('index.php')
+                                  </script>";
+                        } else {
+                            $_SESSION['error'] = "Estudiante : $nombre ya existe!";
+                        }
+
+                    }
+    ?>
 </body>
 </html>
