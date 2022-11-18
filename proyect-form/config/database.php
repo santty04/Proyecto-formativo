@@ -9,23 +9,46 @@
     }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - 
-    // Pokemons
+    // Estudiante
 
-    // Insert Pokemon
-    function addStudent($conx, $name, $type, $strength, $stamina, $speed, $accuracy, $image, $trainer_id) {
+    // Insert Estudiante
+    function addStudent($conx, $nombre, $apellidos, $num_documento, $fecha_nacimiento, $genero, $jornada, $grado) {
         try {
-            $sql = "INSERT INTO pokemons (name, type, strength, stamina, speed, accuracy,
-                    image, trainer_id) VALUES (:name, :type, :strength, :stamina, :speed, 
-                    :accuracy, :image, :trainer_id)";
+            $sql = "INSERT INTO estudiantes (nombre, apellidos, num_documento, fecha_nacimiento, genero, jornada,
+                    grado) VALUES (:nombre, :apellidos, :num_documento, :fecha_nacimiento, :genero, 
+                    :jornada, :grado)";
+
             $stm = $conx->prepare($sql);
-            $stm->bindparam(":name", $name);
-            $stm->bindparam(":type", $type);
-            $stm->bindparam(":strength", $strength);
-            $stm->bindparam(":stamina", $stamina);
-            $stm->bindparam(":speed", $speed);
-            $stm->bindparam(":accuracy", $accuracy);
-            $stm->bindparam(":image", $image);
-            $stm->bindparam(":trainer_id", $trainer_id);
+            $stm->bindparam(":nombre", $nombre);
+            $stm->bindparam(":apellidos", $apellidos);
+            $stm->bindparam(":num_documento", $num_documento);
+            $stm->bindparam(":fecha_nacimiento", $fecha_nacimiento);
+            $stm->bindparam(":genero", $genero);
+            $stm->bindparam(":jornada", $jornada);
+            $stm->bindparam(":grado", $grado);
+            if($stm->execute()) {
+                $id = $conx->lastInsertId();
+                return $id;
+            } else {
+                return -1;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+    }
+
+    function addAcudent($conx, $nombreAcudiente, $apellidosAcudiente, $num_documentoAcudiente, $direccionAcudiente, $telefonoAcudiente, $id_estudiante     ) {
+        try {
+            $sql = "INSERT INTO acudiente (nombre, apellidos, num_documento, direccion, telefono, id_estudiante) 
+                    VALUES (:nombre, :apellidos, :num_documento, :direccion, :telefono, :id_estudiante)";
+            $stm = $conx->prepare($sql);
+            $stm->bindparam(":nombre", $nombreAcudiente);
+            $stm->bindparam(":apellidos", $apellidosAcudiente);
+            $stm->bindparam(":num_documento", $num_documentoAcudiente);
+            $stm->bindparam(":direccion", $direccionAcudiente);
+            $stm->bindparam(":telefono", $telefonoAcudiente);
+            $stm->bindparam(":id_estudiante", $id_estudiante);
             if($stm->execute()) {
                 return true;
             } else {
@@ -139,7 +162,7 @@
     // - - - - - - - - - - - - - - - - - - - - - - - - 
     // usuarios
 
-    // Login Trainer
+    // Login 
     function login($conx, $email, $pass) {
         try {
             $sql = "SELECT * FROM usuarios 
@@ -151,11 +174,11 @@
             $stm->bindparam(":pass", $pass);
             $stm->execute();
             if($stm->rowCount() > 0) {
-                $trainer = $stm->fetch(PDO::FETCH_ASSOC);
-                $_SESSION['tid']    = $trainer['id'];
-                $_SESSION['temail'] = $trainer['email'];
-                $_SESSION['trole']  = $trainer['role'];
-                $_SESSION['tphoto'] = $trainer['photo'];
+                $user = $stm->fetch(PDO::FETCH_ASSOC);
+                $_SESSION['tid']    = $user['id'];
+                $_SESSION['temail'] = $user['email'];
+                $_SESSION['trole']  = $user['role'];
+                $_SESSION['tphoto'] = $user['photo'];
                 return true;
             } else {
                 return false;
