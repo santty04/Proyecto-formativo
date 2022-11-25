@@ -1,3 +1,8 @@
+<?php $title = 'Dashboard' ?>
+    <?php require 'config/app.php' ?>
+    <?php include 'config/database.php'  ?>
+    <?php include 'includes/security.inc' ?>
+    <?php include 'includes/protect-admin.inc' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,6 +114,12 @@
         .btn {
             border: none;
         }
+
+        .title-results{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+       
     </style>
 </head>
 <header>
@@ -141,18 +152,13 @@
               
         </a>
     </div>
-    <form action="">
+    <form action="" method="POST">
     <div class="inputs">
         <h1>Ingrese los datos del estudiante: </h1>
-        <div class="name-student">
-            <label for="">Ingrese el nombre del estudiante:</label>
-            <br>
-            <input type="text" class="inpt">
-        </div>
         <div class="document-student">
             <label for="">Ingrese el N° de documento del estudiante:</label>
             <br>
-            <input type="number" class="inpt">
+            <input type="number" class="inpt" name="documento" id="documento">
         </div>
         <button class="btn-search">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -160,8 +166,106 @@
         </button>
     </div>
     </form>
-    <div class="results">
-        <h1>Resultado:</h1>
+    
+<?php
+
+if($_POST) {
+
+    $documento = $_POST['documento'];
+    $estudiante = showStudent($conx, $documento);
+    // echo "<pre>";
+    // //print_r($estudiante);
+    // print_r ($estudiante [0]);
+    // echo ('</pre>');
+    if( count($estudiante) > 0) { ?>
+    <h2 class="title-results">INFORMACION DEL ESTUDIANTE:</h2>
+<div class="container">
+    <div class="row">
+        <div class="col">
+         <table class="table table-bordered align-middle">
+            <thead class="table-secondary">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>N° documento</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Genero</th>
+                    <th>Jornada</th>
+                    <th>Grado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><?php echo($estudiante [0] ['nombre_estudiante']); ?></td>
+                    <td><?php echo  ($estudiante [0] ['apellidos_estudiante']); ?></td>
+                    <td><?php echo  ($estudiante [0] ['num_documento_estudiante']); ?></td>
+                    <td><?php echo  ($estudiante [0] ['fecha_nacimiento']);?></td>
+                    <td><?php echo  ($estudiante [0] ['genero']);?></td>
+                    <td><?php echo  ($estudiante [0] ['jornada']);?></td>
+                    <td><?php echo  ($estudiante [0] ['grado']);?></td>
+                </tr>
+                
+            </tbody>
+        </table>
+        </div>
     </div>
+</div>
+<h2 class="title-results">INFORMACION DEL ACUDIENTE:</h2>
+<div class="container">
+    <div class="row">
+        <div class="col">
+         <table class="table table-bordered align-middle">
+            <thead class="table-secondary">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>N° documento</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><?php echo  ($estudiante [0] ['nombre_acudiente']);?></td>
+                    <td><?php echo  ($estudiante [0] ['apellidos_acudiente']);?></td>
+                    <td><?php echo  ($estudiante [0] ['num_documento_acudiente']);?></td>
+                    <td><?php echo  ($estudiante [0] ['direccion']);?></td>
+                    <td><?php echo  ($estudiante [0] ['telefono']);?></td>
+                    
+                </tr>
+                
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+<?php
+        // echo  ($estudiante [0] ['nombre_estudiante']);
+        // echo  ($estudiante [0] ['apellidos_estudiante']);
+        // echo  ($estudiante [0] ['num_documento_estudiante']);
+        // echo  ($estudiante [0] ['fecha_nacimiento']);
+        // echo  ($estudiante [0] ['genero']);
+        // echo  ($estudiante [0] ['jornada']);
+        // echo  ($estudiante [0] ['grado']);
+
+        // echo  ($estudiante [0] ['nombre_acudiente']);
+        // echo  ($estudiante [0] ['apellidos_acudiente']);
+        // echo  ($estudiante [0] ['num_documento_acudiente']);
+        // echo  ($estudiante [0] ['direccion']);
+        // echo  ($estudiante [0] ['telefono']);
+
+
+    }else {
+        echo ('No se encontro el estudiante con ese documento');
+    }
+};
+
+
+
+?>
+
+
+
 </body>
 </html>
+

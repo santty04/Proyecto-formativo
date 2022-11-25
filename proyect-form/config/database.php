@@ -364,3 +364,19 @@
             echo $e->getMessage();
         }
     }
+
+    // Show Student
+    function showStudent($conx, $documento) {
+        try {
+            $sql = "select e.nombre as nombre_estudiante, e.apellidos as apellidos_estudiante, e.num_documento as num_documento_estudiante, fecha_nacimiento , genero , jornada , grado , a.nombre as nombre_acudiente, a.apellidos as apellidos_acudiente, a.num_documento as num_documento_acudiente, direccion, telefono
+            from estudiantes as e inner join acudiente as a
+            on e.id = a.id_estudiante
+            where e.num_documento = :doc";
+            $stm = $conx->prepare($sql);
+            $stm->bindparam(":doc", $documento);
+            $stm->execute();
+            return $stm->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }

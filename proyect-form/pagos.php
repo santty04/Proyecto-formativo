@@ -110,7 +110,7 @@
         .document-student {
             position: relative;
             left: 480px;
-            bottom: 75px;
+            bottom: 90px;
 
         }
 
@@ -136,7 +136,7 @@
 
         .pension {
             position: relative;
-            bottom: 134px;
+            bottom: 150px;
             left: 300px;
             
         }
@@ -147,18 +147,17 @@
 
         .fecha {
             position: relative;
-            bottom: 210px;
+            bottom: 240px;
             left: 600px;
         }
-
         .fecha input.inpt {
             width: 250px;
-            height: 24px;
+            height: 27px;
         }
 
         .recibo {
             position: relative;
-            bottom: 215px; 
+            bottom: 240px; 
         }
 
         .recibo input.inpt {
@@ -167,7 +166,7 @@
 
         .adicionales {
             position: relative;
-            bottom: 240px;
+            bottom: 250px;
         }
 
         .desayuno {
@@ -181,7 +180,7 @@
 
         .med-mañana {
             position: relative;
-            bottom: 325px;
+            bottom: 342px;
             left: 300px;
         }
 
@@ -191,7 +190,7 @@
 
         .med-tarde {
             position: relative;
-            bottom: 400px;
+            bottom: 433px;
             left: 600px;
         }
 
@@ -201,7 +200,7 @@
 
         .almuerzo {
             position: relative;
-            bottom: 400px;
+            bottom: 430px;
         }
 
         .almuerzo input.inpt {
@@ -210,7 +209,7 @@
 
         .transporte {
             position: relative;
-            bottom: 475px;
+            bottom: 520px;
             left: 300px;
         }
 
@@ -220,7 +219,7 @@
         
         .derecho-grado {
             position: relative;
-            bottom: 550px;
+            bottom: 610px;
             left: 600px;
         }
 
@@ -230,7 +229,7 @@
 
         .matricula {
             position: relative;
-            bottom: 550px;
+            bottom: 600px;
         }
 
         .matricula input.inpt {
@@ -249,7 +248,7 @@
             cursor: pointer;
             border-radius: 10px;
             position: relative;
-            bottom: 610px;
+            bottom: 650px;
             left: 680px;
         }
         .btn {
@@ -286,14 +285,17 @@
               </svg>
               
         </a>
+        <?php
+            if (!isset($_POST['buscar'])){$_POST['buscar'] = '';}
+        ?>
     </div>
-    <form action="">
+    <form action="" method="POST">
     <div class="inputs">
         <h1>Buscar estudiante: </h1>
         <div class="name-student">
             <label for="">Ingrese el nombre del estudiante:</label>
             <br>
-            <input type="text" class="inpt">
+            <input type="text" class="inpt" id="buscar" name="buscar">
         </div>
         <div class="document-student">
             <label for="">Ingrese el N° de documento del estudiante:</label>
@@ -380,6 +382,18 @@
         </button>
     </div>
     </form>
+
+<div class="card col-12 mt-5">
+    <div class="card-body">
+        <!-- recuerda que si no te funciona con mysql_query tienes que cambiarlo por mysqli_query -->
+        <?php $busqueda=mysql_query($conx,"SELECT * FROM estudiantes WHERE nombre LIKE LOWER('%".$_POST["buscar"]."%') OR num_documento LIKE LOWER('%".$_POST["buscar"]."%') "); 
+        $numero = mysqli_num_rows($busqueda); ?>
+        <h5 class="card-tittle">Resultado (<?php echo $numero; ?>)</h5>
+        <?php while ($resultado = mysqli_fetch_assoc($busqueda)){ ?>
+        <p class="card-tittle"><?php echo $resultado["nombre"]; ?> - <?php echo $resultado["num_documento"]; ?></p>
+        <?php } ?>
+    </div>
+</div>
     
 </body>
 </html>

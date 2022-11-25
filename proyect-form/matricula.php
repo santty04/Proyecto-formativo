@@ -319,54 +319,52 @@
     <?php
     if($_POST) {
         echo ('<h1>Buenas</h1>');
-                        //var_dump($_POST);
-                        //echo "<hr>";
-                        //var_dump($_FILES);
-                        // Estudiante
-                        $nombre              = $_POST['nombre'];
-                        $apellidos           = $_POST['apellidos'];
-                        $num_documento       = $_POST['num_documento'];
-                        $fecha_nacimiento    = $_POST['fecha_nacimiento'];
-                        $genero              = $_POST['genero'];
-                        $jornada             = $_POST['jornada'];
-                        $grado               = $_POST['grado'];
-
-                        // Acudiente
-                        $nombreAcudiente              = $_POST['nombreAcudiente'];
-                        $apellidosAcudiente           = $_POST['apellidosAcudiente'];
-                        $num_documentoAcudiente       = $_POST['num_documentoAcudiente'];
-                        $direccionAcudiente           = $_POST['direccionAcudiente'];
-                        $telefonoAcudiente            = $_POST['telefonoAcudiente'];
-                        // Upload Image
-                        // $path  = "../public/images/";
-                        // $image = $path.time().".".pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-                        
-                        $id = addStudent($conx, $nombre, $apellidos, $num_documento, $fecha_nacimiento, $genero, $jornada, $grado);
-                        if ($id != -1) {
-                            addAcudent($conx, $nombreAcudiente, $apellidosAcudiente, $num_documentoAcudiente, $direccionAcudiente, $telefonoAcudiente, $id);
-                            $_SESSION['message'] = "Estudiante : $nombre ha sido agregado!";
-                            ?>
-                            <!-- <script>
-                                Swal.fire({
-                                    position: 'top-end',
-                                    icon: 'success',
-                                    title: "Se a matriculado el estudiante correctamente",
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                })
-
-                                
-                            </script> -->
-                            <?php
-                            echo "<script>
-                                    window.location.replace('dashboard-admin.php')
-                                  </script>";
-                        }
-                         else {
-                            $_SESSION['error'] = "Estudiante : $nombre ya existe!";
-                        }
-
-                    }
-                            ?>
+            //var_dump($_POST);
+            //echo "<hr>";
+            //var_dump($_FILES);
+            // Estudiante
+            $nombre              = $_POST['nombre'];
+            $apellidos           = $_POST['apellidos'];
+            $num_documento       = $_POST['num_documento'];
+            $fecha_nacimiento    = $_POST['fecha_nacimiento'];
+            $genero              = $_POST['genero'];
+            $jornada             = $_POST['jornada'];
+            $grado               = $_POST['grado'];
+            // Acudiente
+            $nombreAcudiente              = $_POST['nombreAcudiente'];
+            $apellidosAcudiente           = $_POST['apellidosAcudiente'];
+            $num_documentoAcudiente       = $_POST['num_documentoAcudiente'];
+            $direccionAcudiente           = $_POST['direccionAcudiente'];
+            $telefonoAcudiente            = $_POST['telefonoAcudiente'];
+            // Upload Image
+            // $path  = "../public/images/";
+            // $image = $path.time().".".pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+            
+            $id = addStudent($conx, $nombre, $apellidos, $num_documento, $fecha_nacimiento, $genero, $jornada, $grado);
+            if ($id != -1) {
+                addAcudent($conx, $nombreAcudiente, $apellidosAcudiente, $num_documentoAcudiente, $direccionAcudiente, $telefonoAcudiente, $id);
+                $_SESSION['message'] = "Estudiante : $nombre ha sido agregado!";
+                ?>
+                <!-- <script>
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: "Se a matriculado el estudiante correctamente",
+                        showConfirmButton: false,
+                        timer: 1500
+                    
+                    
+                </script> -->
+                <?php
+                echo "<script>
+                        window.location.replace('dashboard-admin.php')
+                      </script>";
+            }
+             else {
+                $_SESSION['error'] = "Estudiante : $nombre ya existe!";
+            }
+            
+        }
+    ?>
 </body>
 </html>
