@@ -1,3 +1,9 @@
+<?php $title = 'Dashboard' ?>
+    <?php require 'config/app.php' ?>
+    <?php include 'config/database.php'  ?>
+    <?php include 'includes/security.inc' ?>
+    <?php include 'includes/protect-admin.inc' ?>
+    <?php include 'includes/scripts.inc' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,9 +38,8 @@
         div.nav {
             position: absolute;
             width: 94px;
-            height: 213px;
+            height: 425px;
             left: 0px;
-            margin-top: 50px;
             top: 308px;
             background: #039041;
             border-radius: 0px 50px 50px 0px;
@@ -48,11 +53,29 @@
             margin-top: 25px;
             color: #fff;
         }
+        div.nav svg.user-plus {
+            box-sizing: border-box;
+            position: absolute;
+            left: 5px;
+            margin-top: 110px;
+            width: 80px;
+            height: 80px;
+            color: #fff;
+        }
         div.nav svg.user {
             box-sizing: border-box;
             position: absolute;
             left: 2px;
-            margin-top: 110px;
+            margin-top: 210px;
+            width: 80px;
+            height: 80px;
+            color: #fff;
+        }
+        div.nav svg.cards {
+            box-sizing: border-box;
+            position: absolute;
+            left: 3px;
+            margin-top: 310px;
             width: 80px;
             height: 80px;
             color: #fff;
@@ -66,7 +89,7 @@
         }
         .inputs .inpt {
             width: 400px;
-            height: 20px;
+            height: 30px;
             margin: 10px 20px 20px 0px;
             border: 2px solid #373232;
             border-radius: 5px;
@@ -92,6 +115,12 @@
         .btn {
             border: none;
         }
+
+        .title-results{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+       
     </style>
 </head>
 <header>
@@ -100,11 +129,16 @@
 </header>
 <body>
     <div class="nav">
-        <a href="dashboard-rector.php">
+        <a href="dashboard-admin.php">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 exit">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               
+        </a>
+        <a href="matricula.php">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 user-plus">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+              </svg>
         </a>
         <a href="" class="btn disabled" role="button" aria-disabled="true">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 user">
@@ -112,19 +146,20 @@
               </svg>
               
         </a>
+        <a href="pagos.php">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cards">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
+              </svg>
+              
+        </a>
     </div>
-    <form action="">
+    <form action="" method="POST">
     <div class="inputs">
         <h1>Ingrese los datos del estudiante: </h1>
-        <div class="name-student">
-            <label for="">Ingrese el nombre del estudiante:</label>
-            <br>
-            <input type="text" class="inpt">
-        </div>
         <div class="document-student">
             <label for="">Ingrese el N° de documento del estudiante:</label>
             <br>
-            <input type="number" class="inpt">
+            <input type="number" class="inpt" name="documento" id="documento">
         </div>
         <button class="btn-search">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -132,8 +167,114 @@
         </button>
     </div>
     </form>
-    <div class="results">
-        <h1>Resultado:</h1>
+    
+<?php
+
+if($_POST) {
+
+    $documento = $_POST['documento'];
+    $estudiante = showStudent($conx, $documento);
+    // echo "<pre>";
+    // //print_r($estudiante);
+    // print_r ($estudiante [0]);
+    // echo ('</pre>');
+    if( count($estudiante) > 0) { ?>
+    <h2 class="title-results">INFORMACION DEL ESTUDIANTE:</h2>
+<div class="container">
+    <div class="row">
+        <div class="col">
+         <table class="table table-bordered align-middle">
+            <thead class="table-secondary">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>N° documento</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Genero</th>
+                    <th>Jornada</th>
+                    <th>Grado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><?php echo  ($estudiante [0] ['nombre_estudiante']); ?></td>
+                    <td><?php echo  ($estudiante [0] ['apellidos_estudiante']); ?></td>
+                    <td><?php echo  ($estudiante [0] ['num_documento_estudiante']); ?></td>
+                    <td><?php echo  ($estudiante [0] ['fecha_nacimiento']);?></td>
+                    <td><?php echo  ($estudiante [0] ['genero']);?></td>
+                    <td><?php echo  ($estudiante [0] ['jornada']);?></td>
+                    <td><?php echo  ($estudiante [0] ['grado']);?></td>
+                </tr>
+                
+            </tbody>
+        </table>
+        </div>
     </div>
+</div>
+<h2 class="title-results">INFORMACION DEL ACUDIENTE:</h2>
+<div class="container">
+    <div class="row">
+        <div class="col">
+         <table class="table table-bordered align-middle">
+            <thead class="table-secondary">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>N° documento</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><?php echo  ($estudiante [0] ['nombre_acudiente']);?></td>
+                    <td><?php echo  ($estudiante [0] ['apellidos_acudiente']);?></td>
+                    <td><?php echo  ($estudiante [0] ['num_documento_acudiente']);?></td>
+                    <td><?php echo  ($estudiante [0] ['direccion']);?></td>
+                    <td><?php echo  ($estudiante [0] ['telefono']);?></td>
+                    
+                </tr>
+                
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+<?php
+        // echo  ($estudiante [0] ['nombre_estudiante']);
+        // echo  ($estudiante [0] ['apellidos_estudiante']);
+        // echo  ($estudiante [0] ['num_documento_estudiante']);
+        // echo  ($estudiante [0] ['fecha_nacimiento']);
+        // echo  ($estudiante [0] ['genero']);
+        // echo  ($estudiante [0] ['jornada']);
+        // echo  ($estudiante [0] ['grado']);
+
+        // echo  ($estudiante [0] ['nombre_acudiente']);
+        // echo  ($estudiante [0] ['apellidos_acudiente']);
+        // echo  ($estudiante [0] ['num_documento_acudiente']);
+        // echo  ($estudiante [0] ['direccion']);
+        // echo  ($estudiante [0] ['telefono']);
+
+
+    }else {
+        echo ("<script>
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'El estudiante no esta registrado',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            </script>");
+    }
+};
+
+
+
+?>
+
+
+
 </body>
 </html>
+

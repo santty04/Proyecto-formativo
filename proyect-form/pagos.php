@@ -1,3 +1,9 @@
+<?php $title = 'Pagos' ?>
+    <?php require 'config/app.php' ?>
+    <?php include 'config/database.php'  ?>
+    <?php include 'includes/security.inc' ?>
+    <?php include 'includes/protect-admin.inc' ?>
+    <?php include 'includes/scripts.inc' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,7 +104,6 @@
             background-color: #039041;
             border: none;
             position: relative;
-            bottom: 80px;
             color: #fff;
             font-size: 16px;
             width: 120px;
@@ -107,21 +112,14 @@
             border-radius: 10px;
         }
 
-        .document-student {
-            position: relative;
-            left: 480px;
-            bottom: 90px;
-
-        }
-
         .p-p {
             position: relative;
-            bottom: 80px;
+            bottom: 5px;
         }
 
         .mes {
             position: relative;
-            bottom: 80px;
+            bottom: -3px;
         }
 
        
@@ -136,7 +134,7 @@
 
         .pension {
             position: relative;
-            bottom: 150px;
+            bottom: 60px;
             left: 300px;
             
         }
@@ -147,7 +145,7 @@
 
         .fecha {
             position: relative;
-            bottom: 240px;
+            bottom: 145px;
             left: 600px;
         }
         .fecha input.inpt {
@@ -157,7 +155,7 @@
 
         .recibo {
             position: relative;
-            bottom: 240px; 
+            bottom: 150px; 
         }
 
         .recibo input.inpt {
@@ -166,12 +164,12 @@
 
         .adicionales {
             position: relative;
-            bottom: 250px;
+            bottom: 170px;
         }
 
         .desayuno {
             position: relative;
-            bottom: 250px;
+            bottom: 180px;
         }
 
         .desayuno input.inpt {
@@ -180,7 +178,7 @@
 
         .med-mañana {
             position: relative;
-            bottom: 342px;
+            bottom: 270px;
             left: 300px;
         }
 
@@ -190,7 +188,7 @@
 
         .med-tarde {
             position: relative;
-            bottom: 433px;
+            bottom: 360px;
             left: 600px;
         }
 
@@ -200,7 +198,7 @@
 
         .almuerzo {
             position: relative;
-            bottom: 430px;
+            bottom: 355px;
         }
 
         .almuerzo input.inpt {
@@ -209,7 +207,7 @@
 
         .transporte {
             position: relative;
-            bottom: 520px;
+            bottom: 440px;
             left: 300px;
         }
 
@@ -219,7 +217,7 @@
         
         .derecho-grado {
             position: relative;
-            bottom: 610px;
+            bottom: 525px;
             left: 600px;
         }
 
@@ -229,7 +227,7 @@
 
         .matricula {
             position: relative;
-            bottom: 600px;
+            bottom: 520;
         }
 
         .matricula input.inpt {
@@ -240,7 +238,7 @@
             background-color: #039041;
             border: none;
             position: relative;
-            bottom: 80px;
+            bottom: 570px;
             color: #fff;
             font-size: 16px;
             width: 120px;
@@ -248,11 +246,17 @@
             cursor: pointer;
             border-radius: 10px;
             position: relative;
-            bottom: 650px;
             left: 680px;
         }
         .btn {
             border: none;
+        }
+
+        h3 {
+            text-align: center;
+            border:2px solid #373232;
+            border-radius: 10px;
+            width: 300px;
         }
     </style>
 </head>
@@ -285,115 +289,137 @@
               </svg>
               
         </a>
-        <?php
-            if (!isset($_POST['buscar'])){$_POST['buscar'] = '';}
-        ?>
     </div>
-    <form action="" method="POST">
+<form action="" method="POST">
     <div class="inputs">
         <h1>Buscar estudiante: </h1>
-        <div class="name-student">
-            <label for="">Ingrese el nombre del estudiante:</label>
-            <br>
-            <input type="text" class="inpt" id="buscar" name="buscar">
-        </div>
         <div class="document-student">
             <label for="">Ingrese el N° de documento del estudiante:</label>
             <br>
-            <input type="number" class="inpt">
+            <input type="number" class="inpt" name="documento" id="documento">
         </div>
         <button class="btn-search">
             <i class="fa-solid fa-magnifying-glass"></i>
             Buscar
         </button>
-        <h1 class="p-p">Pago de pensiones: </h1>
-        <div class="mes">
-            <label for="">Mes: </label>
-            <br>
-            <select name="" id="">
-                <option selected disabled value="">Selecciona</option>
-                <option value="enero">Enero</option>
-                <option value="febrero">Febrero</option>
-                <option value="marzo">Marzo</option>
-                <option value="abril">Abril</option>
-                <option value="mayo">Mayo</option>
-                <option value="junio">Junio</option>
-                <option value="julio">Julio</option>
-                <option value="agosto">Agosto</option>
-                <option value="septiembre">Septiembre</option>
-                <option value="octubre">octubre</option>
-                <option value="noviembre">Noviembre</option>
-                <option value="diciembre">Diciembre</option>
-            </select>
-        </div>
-        <div class="pension">
-            <label for="">Pension: </label>
-            <br>
-            <input  type="number" class="inpt">
-        </div>
-        <div class="fecha">
-            <label for="">Fecha: </label>
-            <br>
-            <input type="date" class="inpt">
-        </div>
-        <div class="recibo">
-            <label for="">N° Recibo Manual: </label>
-            <br>
-            <input type="number" class="inpt">
-        </div>
-        <h1 class="adicionales">Pago servicios adicionales:</h1>
-        <div class="desayuno">
-            <label for="">Desayuno: </label>
-            <br>
-            <input type="number" class="inpt">
-        </div>
-        <div class="med-mañana">
-            <label for="">Media mañana: </label>
-            <br>
-            <input type="number" class="inpt">
-        </div>
-        <div class="med-tarde">
-            <label for="">Media tarde: </label>
-            <br>
-            <input type="number" class="inpt">
-        </div>
-        <div class="almuerzo">
-            <label for="">Almuerzo: </label>
-            <br>
-            <input type="number" class="inpt">
-        </div>
-        <div class="transporte">
-            <label for="">Transporte: </label>
-            <br>
-            <input type="number" class="inpt">
-        </div>
-        <div class="derecho-grado">
-            <label for="">Derecho de grado: </label>
-            <br>
-            <input type="number" class="inpt">
-        </div>
-        <div class="matricula">
-            <label for="">Matricula: </label>
-            <br>
-            <input type="number" class="inpt">
-        </div>
-        <button class="enviar-btn-search">
-            Enviar
-        </button>
     </div>
-    </form>
+</form>
 
-<div class="card col-12 mt-5">
-    <div class="card-body">
-        <!-- recuerda que si no te funciona con mysql_query tienes que cambiarlo por mysqli_query -->
-        <?php $busqueda=mysql_query($conx,"SELECT * FROM estudiantes WHERE nombre LIKE LOWER('%".$_POST["buscar"]."%') OR num_documento LIKE LOWER('%".$_POST["buscar"]."%') "); 
-        $numero = mysqli_num_rows($busqueda); ?>
-        <h5 class="card-tittle">Resultado (<?php echo $numero; ?>)</h5>
-        <?php while ($resultado = mysqli_fetch_assoc($busqueda)){ ?>
-        <p class="card-tittle"><?php echo $resultado["nombre"]; ?> - <?php echo $resultado["num_documento"]; ?></p>
-        <?php } ?>
-    </div>
-</div>
+    <?php
+
+if($_POST) {
+
+    $documento = $_POST['documento'];
+    $estudiante = showStudent($conx, $documento);
+    // echo "<pre>";
+    // //print_r($estudiante);
+    // print_r ($estudiante [0]);
+    // echo ('</pre>');
+    if( count($estudiante) > 0) { ?>
+    <form action="" method="POST">
+        <div class="inputs">
+        <h3>
+            <?php echo  ($estudiante [0] ['nombre_estudiante']);?>
+            <?php echo  ($estudiante [0] ['apellidos_estudiante']); ?>
+        </h3>    
+            <h1 class="p-p">Pago de pensiones: </h1>
+
+            <div class="mes">
+                <label for="">Mes: </label>
+                <br>
+                <select name="" id="">
+                    <option selected disabled value="">Selecciona</option>
+                    <option value="enero">Enero</option>
+                    <option value="febrero">Febrero</option>
+                    <option value="marzo">Marzo</option>
+                    <option value="abril">Abril</option>
+                    <option value="mayo">Mayo</option>
+                    <option value="junio">Junio</option>
+                    <option value="julio">Julio</option>
+                    <option value="agosto">Agosto</option>
+                    <option value="septiembre">Septiembre</option>
+                    <option value="octubre">octubre</option>
+                    <option value="noviembre">Noviembre</option>
+                    <option value="diciembre">Diciembre</option>
+                </select>
+            </div>
+            <div class="pension">
+                <label for="">Pension: </label>
+                <br>
+                <input  type="number" class="inpt">
+            </div>
+            <div class="fecha">
+                <label for="">Fecha: </label>
+                <br>
+                <input type="date" class="inpt">
+            </div>
+            <div class="recibo">
+                <label for="">N° Recibo Manual: </label>
+                <br>
+                <input type="number" class="inpt">
+            </div>
+
+
+            <h1 class="adicionales">Pago servicios adicionales:</h1>
+            <div class="desayuno">
+                <label for="">Desayuno: </label>
+                <br>
+                <input type="number" class="inpt">
+            </div>
+            <div class="med-mañana">
+                <label for="">Media mañana: </label>
+                <br>
+                <input type="number" class="inpt">
+            </div>
+            <div class="med-tarde">
+                <label for="">Media tarde: </label>
+                <br>
+                <input type="number" class="inpt">
+            </div>
+            <div class="almuerzo">
+                <label for="">Almuerzo: </label>
+                <br>
+                <input type="number" class="inpt">
+            </div>
+            <div class="transporte">
+                <label for="">Transporte: </label>
+                <br>
+                <input type="number" class="inpt">
+            </div>
+            <div class="derecho-grado">
+                <label for="">Derecho de grado: </label>
+                <br>
+                <input type="number" class="inpt">
+            </div>
+            <div class="matricula">
+                <label for="">Matricula: </label>
+                <br>
+                <input type="number" class="inpt">
+            </div>
+            <button class="enviar-btn-search">
+                Enviar
+            </button>
+        </div>
+        </div>
+    </form>
     
+<?php
+
+    }else {
+        echo ("<script>
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'El estudiante no esta registrado',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            </script>");
+    }
+};
+
+
+
+?>
 </body>
 </html>

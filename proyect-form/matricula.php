@@ -3,6 +3,7 @@
     <?php include 'config/database.php'  ?>
     <?php include 'includes/security.inc' ?>
     <?php include 'includes/protect-admin.inc' ?>
+    <?php include 'includes/scripts.inc' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -184,6 +185,10 @@
             border-radius: 10px;
             position: relative;
             bottom: 400px;
+            transition: all 0.5s;
+        }
+        .enviar-btn-search {
+            transform: scale(1.1);
         }
         .btn{
             border: none;
@@ -344,21 +349,19 @@
             if ($id != -1) {
                 addAcudent($conx, $nombreAcudiente, $apellidosAcudiente, $num_documentoAcudiente, $direccionAcudiente, $telefonoAcudiente, $id);
                 $_SESSION['message'] = "Estudiante : $nombre ha sido agregado!";
-                ?>
-                <!-- <script>
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: "Se a matriculado el estudiante correctamente",
-                        showConfirmButton: false,
-                        timer: 1500
-                    
-                    
-                </script> -->
-                <?php
-                echo "<script>
-                        window.location.replace('dashboard-admin.php')
-                      </script>";
+
+                echo ("<script>
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'El estudiante se a registrado correctamente',
+                            showConfirmButton: true,
+                            timer: 1500
+                        })
+                    </script>");
+                // echo "<script>
+                //         window.location.replace('dashboard-admin.php')
+                //       </script>";
             }
              else {
                 $_SESSION['error'] = "Estudiante : $nombre ya existe!";

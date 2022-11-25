@@ -15,17 +15,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home-Admin</title>
     <link rel="stylesheet" href="public/css/panel-admin.css">
+    <link rel="stylesheet" href="public/css/fontawesome.min.css">
 </head>
     <header>
         <h2>Base de datos | Liceo Aprender</h2>
-        <ul>
-            <li>
-                <a href="<?php echo $base_url . '/' ?>close.php" class="close">
+        <button class="close"> 
+            <a class="closeSesion "href="<?php echo $base_url . '/' ?>close.php">
+                Close Session
+            </a>
+        </button>
+
+        
+        
+        <!-- <a href="<?php echo $base_url . '/' ?>close.php" class="close">
                     <i class="fa fa-times"></i>
                     Close Session
-                </a>
-            </li>
-        </ul>
+                </a> -->
         <div class="banner">
             <img class="users" src="images/users.svg" alt="">
             <h1>Bienvenido al panel administrativo</h1>

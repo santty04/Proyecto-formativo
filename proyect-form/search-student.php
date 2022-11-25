@@ -3,6 +3,7 @@
     <?php include 'config/database.php'  ?>
     <?php include 'includes/security.inc' ?>
     <?php include 'includes/protect-admin.inc' ?>
+    <?php include 'includes/scripts.inc' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,10 +20,10 @@
         }
         /* header */
         header h1 {
-            width: 395px;
+            width: 1000px;
             text-align: center;
             margin: 40px auto;
-            margin-left: 650px;
+            margin-left: 300px;
             border-bottom: 2px solid #373232;
             color: #373232;
         }   
@@ -196,7 +197,7 @@ if($_POST) {
             </thead>
             <tbody>
                 <tr>
-                    <td><?php echo($estudiante [0] ['nombre_estudiante']); ?></td>
+                    <td><?php echo  ($estudiante [0] ['nombre_estudiante']); ?></td>
                     <td><?php echo  ($estudiante [0] ['apellidos_estudiante']); ?></td>
                     <td><?php echo  ($estudiante [0] ['num_documento_estudiante']); ?></td>
                     <td><?php echo  ($estudiante [0] ['fecha_nacimiento']);?></td>
@@ -256,7 +257,15 @@ if($_POST) {
 
 
     }else {
-        echo ('No se encontro el estudiante con ese documento');
+        echo ("<script>
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'El estudiante no esta registrado',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            </script>");
     }
 };
 
