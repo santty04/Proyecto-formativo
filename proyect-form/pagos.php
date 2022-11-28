@@ -446,7 +446,7 @@ if($_POST) {
                 //       </script>";
             }
              else {
-                $_SESSION['error'] = "Estudiante : $nombre ya existe!";
+                echo ("Hola");
             }
             
         }
