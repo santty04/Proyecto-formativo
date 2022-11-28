@@ -311,6 +311,7 @@ if($_POST) {
 
     $documento = $_POST['documento'];
     $estudiante = showStudent($conx, $documento);
+    
     // echo "<pre>";
     // //print_r($estudiante);
     // print_r ($estudiante [0]);
@@ -327,7 +328,7 @@ if($_POST) {
             <div class="mes">
                 <label for="">Mes: </label>
                 <br>
-                <select name="" id="">
+                <select name="mes" id="mes">
                     <option selected disabled value="">Selecciona</option>
                     <option value="enero">Enero</option>
                     <option value="febrero">Febrero</option>
@@ -346,17 +347,17 @@ if($_POST) {
             <div class="pension">
                 <label for="">Pension: </label>
                 <br>
-                <input  type="number" class="inpt">
+                <input  type="number" class="inpt" name="pension" id="pension">
             </div>
             <div class="fecha">
                 <label for="">Fecha: </label>
                 <br>
-                <input type="date" class="inpt">
+                <input type="date" class="inpt" name="fecha" id="fecha">
             </div>
             <div class="recibo">
                 <label for="">N° Recibo Manual: </label>
                 <br>
-                <input type="number" class="inpt">
+                <input type="number" class="inpt" name="num_recibo_manual" id="num_recibo_manual">
             </div>
 
 
@@ -364,37 +365,37 @@ if($_POST) {
             <div class="desayuno">
                 <label for="">Desayuno: </label>
                 <br>
-                <input type="number" class="inpt">
+                <input type="number" class="inpt" name="desayuno" id="desayuno">
             </div>
             <div class="med-mañana">
                 <label for="">Media mañana: </label>
                 <br>
-                <input type="number" class="inpt">
+                <input type="number" class="inpt" name="media_mañana" id="media_mañana">
             </div>
             <div class="med-tarde">
                 <label for="">Media tarde: </label>
                 <br>
-                <input type="number" class="inpt">
+                <input type="number" class="inpt" name="media_tarde" id="media_tarde">
             </div>
             <div class="almuerzo">
                 <label for="">Almuerzo: </label>
                 <br>
-                <input type="number" class="inpt">
+                <input type="number" class="inpt" name="almuerzo" id="almuerzo">
             </div>
             <div class="transporte">
                 <label for="">Transporte: </label>
                 <br>
-                <input type="number" class="inpt">
+                <input type="number" class="inpt" name="transporte" id="transporte">
             </div>
             <div class="derecho-grado">
                 <label for="">Derecho de grado: </label>
                 <br>
-                <input type="number" class="inpt">
+                <input type="number" class="inpt" name="derecho_grado" id="derecho_grado">
             </div>
             <div class="matricula">
                 <label for="">Matricula: </label>
                 <br>
-                <input type="number" class="inpt">
+                <input type="number" class="inpt" name="matricula" id="matricula">
             </div>
             <button class="enviar-btn-search">
                 Enviar
@@ -402,6 +403,54 @@ if($_POST) {
         </div>
         </div>
     </form>
+    <?php include 'includes/scripts.inc' ?>
+    <?php
+    if($_POST) {
+        echo ('<h1>Buenas</h1>');
+            //var_dump($_POST);
+            //echo "<hr>";
+            //var_dump($_FILES);
+            // Pagos
+            $fecha                   = date('d-m-Y');
+            $mes                     = $_POST['mes'];
+            $pension                 = $_POST['pension'];
+            $num_recibo_manual       = $_POST['num_recibo_manual'];
+
+            // Detalles
+            $desayuno               = $_POST['desayuno'];
+            $media_mañana           = $_POST['media_mañana'];
+            $media_tarde            = $_POST['media_tarde'];
+            $almuerzo               = $_POST['almuerzo'];
+            $transporte             = $_POST['transporte'];
+            $derecho_grado          = $_POST['derecho_grado'];
+            $matricula              = $_POST['matricula'];
+            // Upload Image
+            // $path  = "../public/images/";
+            // $image = $path.time().".".pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+            
+            $id = addPayment($conx, $nombre, $apellidos, $num_documento, $fecha_nacimiento);
+            if ($id != -1) {
+                addDetail($conx, $id, $desayuno, $media_mañana, $media_tarde, $almuerzo, $transporte, $derecho_grado, $matricula);
+
+                echo ("<script>
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'El estudiante se a registrado correctamente',
+                            showConfirmButton: true,
+                            timer: 1500
+                        })
+                    </script>");
+                // echo "<script>
+                //         window.location.replace('dashboard-admin.php')
+                //       </script>";
+            }
+             else {
+                $_SESSION['error'] = "Estudiante : $nombre ya existe!";
+            }
+            
+        }
+    ?>
     
 <?php
 

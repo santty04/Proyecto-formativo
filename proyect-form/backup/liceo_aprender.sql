@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-11-2022 a las 13:31:16
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Tiempo de generación: 28-11-2022 a las 22:03:53
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,11 +31,11 @@ CREATE TABLE `acudiente` (
   `id` int(11) NOT NULL,
   `nombre` varchar(25) NOT NULL,
   `apellidos` varchar(25) NOT NULL,
-  `num_documento` int(11) NOT NULL,
+  `num_documento` int(32) DEFAULT NULL,
   `direccion` varchar(25) NOT NULL,
   `telefono` int(11) NOT NULL,
   `id_estudiante` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -55,7 +55,7 @@ CREATE TABLE `detalles` (
   `transporte` int(32) NOT NULL,
   `derecho_grado` int(32) NOT NULL,
   `matricula` int(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -67,12 +67,12 @@ CREATE TABLE `estudiantes` (
   `id` int(11) NOT NULL,
   `nombre` varchar(25) NOT NULL,
   `apellidos` varchar(25) NOT NULL,
-  `num_documento` int(11) NOT NULL,
   `fecha_nacimiento` date NOT NULL,
+  `num_documento` int(32) DEFAULT NULL,
   `genero` varchar(15) NOT NULL,
   `jornada` varchar(25) NOT NULL,
   `grado` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -88,7 +88,7 @@ CREATE TABLE `pagos` (
   `num_recibo_manual` int(11) NOT NULL,
   `estudiantes_id` int(11) DEFAULT NULL,
   `id_tipo_pago` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -99,7 +99,7 @@ CREATE TABLE `pagos` (
 CREATE TABLE `tipo_pago` (
   `id` int(11) NOT NULL,
   `detalles_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -114,7 +114,7 @@ CREATE TABLE `usuarios` (
   `photo` varchar(64) NOT NULL DEFAULT 'public/images/trainer.png',
   `password` varchar(64) NOT NULL DEFAULT '827ccb0eea8a706c4c34a16891f84e7b',
   `role` varchar(16) NOT NULL DEFAULT 'Trainer'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -133,6 +133,7 @@ INSERT INTO `usuarios` (`id`, `name`, `email`, `photo`, `password`, `role`) VALU
 --
 ALTER TABLE `acudiente`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `num_documento` (`num_documento`),
   ADD KEY `id_estudiante` (`id_estudiante`);
 
 --
@@ -146,7 +147,8 @@ ALTER TABLE `detalles`
 -- Indices de la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `num_documento` (`num_documento`);
 
 --
 -- Indices de la tabla `pagos`

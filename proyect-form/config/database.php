@@ -374,8 +374,58 @@
             where e.num_documento = :doc";
             $stm = $conx->prepare($sql);
             $stm->bindparam(":doc", $documento);
-            $stm->execute();
-            return $stm->fetchAll();
+            if($stm->execute()) {
+                $id = $conx->lastInsertId();
+                return $id;
+            } else {
+                return -1;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    // Insert Payments
+    function addPayment($conx, $fecha, $mes, $pension, $num_recibo_manual) {
+        try {
+            $sql = "INSERT INTO pagos(fecha, mes, pension, num_recibo_manual) 
+                    VALUES (:fecha, :mes, :pension, :num_recibo_manual)";
+            $stm = $conx->prepare($sql);
+            $stm->bindparam(":fecha", $fecha);
+            $stm->bindparam(":mes", $mes);
+            $stm->bindparam(":pension", $pension);
+            $stm->bindparam(":num_recibo_manual", $num_recibo_manual);
+            if($stm->execute()) {
+                $id = $conx->lastInsertId();
+                return $id;
+            } else {
+                return -1;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+    }
+
+    function addDetail($conx, $id, $desayuno, $media_mañana, $media_tarde, $almuerzo, $transporte, $derecho_grado, $matricula, ) {
+        try {
+            $sql = "INSERT INTO pagos(pago_id, desayuno, media_mañana, media_tarde, almuerzo, transporte, derecho_grado, matricula) 
+                    VALUES (:pago_id, :desayuno, :media_mañana, :media_tarde, :almuerzo, :transporte, :derecho_grado, :matricula)";
+            $stm = $conx->prepare($sql);
+            $stm->bindparam(":pago_id", $id);
+            $stm->bindparam(":desayuno", $desayuno);
+            $stm->bindparam(":media_mañana", $media_mañana);
+            $stm->bindparam(":media_tarde", $media_tarde);
+            $stm->bindparam(":almuerzo", $almuerzo);
+            $stm->bindparam(":transporte", $transporte);
+            $stm->bindparam(":derecho_grado", $derecho_grado);
+            $stm->bindparam(":matricula", $matricula);
+            if($stm->execute()) {
+                $id = $conx->lastInsertId();
+                return $id;
+            } else {
+                return -1;
+            }
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
