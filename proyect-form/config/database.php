@@ -368,7 +368,7 @@
     // Show Student
     function showStudent($conx, $documento) {
         try {
-            $sql = "select e.nombre as nombre_estudiante, e.apellidos as apellidos_estudiante, e.num_documento as num_documento_estudiante, fecha_nacimiento , genero , jornada , grado , a.nombre as nombre_acudiente, a.apellidos as apellidos_acudiente, a.num_documento as num_documento_acudiente, direccion, telefono
+            $sql = "select e.id, e.nombre as nombre_estudiante, e.apellidos as apellidos_estudiante, e.num_documento as num_documento_estudiante, fecha_nacimiento , genero , jornada , grado , a.nombre as nombre_acudiente, a.apellidos as apellidos_acudiente, a.num_documento as num_documento_acudiente, direccion, telefono
             from estudiantes as e inner join acudiente as a
             on e.id = a.id_estudiante
             where e.num_documento = :doc";
@@ -377,6 +377,83 @@
             $stm->execute();
             return $stm->fetchAll();
         } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+       // Show Student Grade
+       function showStudentGrade($conx, $grado) {
+        try {
+            $sql = "select e.nombre as nombre_estudiante, e.apellidos as apellidos_estudiante, e.num_documento as num_documento_estudiante, fecha_nacimiento , genero , jornada , grado 
+            from estudiantes e where e.grado = :grad";
+            $stm = $conx->prepare($sql);
+            $stm->bindparam(":grad", $grado);
+            $stm->execute();
+            return $stm->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    // Insert Payments
+    function addPayment($conx, $fecha, $mes, $pension, $num_recibo_manual,  $num_documento) {
+        try {
+            $sql = "INSERT INTO pagos(fecha, mes, pension, num_recibo_manual, estudiantes_id) 
+                    VALUES (:fecha, :mes, :pension, :num_recibo_manual, :id_estudiante)";
+            $stm = $conx->prepare($sql);
+            $stm->bindparam(":fecha", $fecha);
+            $stm->bindparam(":mes", $mes);
+            $stm->bindparam(":pension", $pension);
+            $stm->bindparam(":num_recibo_manual", $num_recibo_manual);
+            $stm->bindparam(":id_estudiante", $num_documento);
+            if($stm->execute()) {
+                $id = $conx->lastInsertId();
+                return $id;
+            } else {
+                return -1;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+    }
+
+    function addDetail($conx, $id, $desayuno, $media_manana, $media_tarde, $almuerzo, $transporte, $derecho_grado, $matricula) {
+        try {
+            $sql = "INSERT INTO detalles(pago_id, desayuno, media_manana, media_tarde, almuerzo, transporte, derecho_grado, matricula) 
+                    VALUES (:pago_id, :desayuno, :media_manana, :media_tarde, :almuerzo, :transporte, :derecho_grado, :matricula)";
+            $stm = $conx->prepare($sql);
+            $stm->bindparam(":pago_id", $id);
+            $stm->bindparam(":desayuno", $desayuno);
+            $stm->bindparam(":media_manana", $media_manana);
+            $stm->bindparam(":media_tarde", $media_tarde);
+            $stm->bindparam(":almuerzo", $almuerzo);
+            $stm->bindparam(":transporte", $transporte);
+            $stm->bindparam(":derecho_grado", $derecho_grado);
+            $stm->bindparam(":matricula", $matricula);
+            if($stm->execute()) {
+                $id = $conx->lastInsertId();
+                return $id;
+            } else {
+                return -1;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    function showPayments($conx, $idEstudiante)
+    {
+        try{
+            $sql = "SELECT * FROM pagos WHERE estudiantes_id = :idEstudiante ORDER BY fecha DESC";
+            $stm = $conx->prepare($sql);
+            $stm->bindparam(":idEstudiante", $idEstudiante);
+            if($stm->execute()) {
+                return $stm->fetchAll();
+            } else {
+                return false;
+            }
+        }catch(PDOException $e){
             echo $e->getMessage();
         }
     }
