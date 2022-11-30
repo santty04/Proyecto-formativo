@@ -177,7 +177,7 @@
               </svg>
               
         </a>
-        <a hrfef="pagos.php">
+        <a href="pagos.php">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cards">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
               </svg>
@@ -190,7 +190,7 @@
         <div class="document-student">
             <label for="">Ingrese el N° de documento del estudiante:</label>
             <br>
-            <input type="number" class="inpt" name="documento" id="documento">
+            <input type="number" class="inpt" name="documento" id="documento" value="0" >
         </div>
         <div class="grados">
             <label for="">Grado:</label>
@@ -222,10 +222,9 @@
     </div>
     </form>
     
-<?php
-
-if($_POST) {
-    $grado = (isset($_POST['grado']) && strlen(trim($_POST['grado']))>0 ? $_POST['grado'] : false);
+<?php if($_POST) :?>
+    <?php
+    $grado = (isset($_POST['grado']) && strlen(trim($_POST['grado'])) >0 ? $_POST['grado'] : false);
     if($grado)
     {
         $estudiantes = showStudentGrade($conx, $grado);
@@ -241,151 +240,148 @@ if($_POST) {
     // //print_r($estudiante);
     // print_r ($estudiante [0]);
     // echo ('</pre>');
-    if(isset($estudiantes) && $estudiantes && count($estudiantes) > 0) { ?>
-<h2 class="title-results">INFORMACION DEL ESTUDIANTE:</h2>
-<div class="container">
-    <div class="row">
-        <div class="col">
-         <table class="table table-bordered align-middle">
-            <thead class="table-secondary">
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>N° documento</th>
-                    <th>Fecha Nacimiento</th>
-                    <th>Genero</th>
-                    <th>Jornada</th>
-                    <th>Grado</th>
-                    <th>Pagos</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php
-                foreach($estudiantes as $estudiante)
-                {
-                    $pagos = showPayments($conx, $estudiante['id']);
-            ?>
-            <tr>
-                <td><?php echo  ($estudiante['nombre_estudiante']); ?></td>
-                <td><?php echo  ($estudiante['apellidos_estudiante']); ?></td>
-                <td><?php echo  ($estudiante['num_documento_estudiante']); ?></td>
-                <td><?php echo  ($estudiante['fecha_nacimiento']);?></td>
-                <td><?php echo  ($estudiante['genero']);?></td>
-                <td><?php echo  ($estudiante['jornada']);?></td>
-                <td><?php echo  ($estudiante['grado']);?></td>
-                <td align="center"><?= ($pagos ? '<b id="btnPagos_'.$estudiante['id'].'" class="pagos" title="Ver pagos" data-id="'.$estudiante['id'].'">+</b>': ''); ?></td>
-            </tr>
-            <?php
-                    if($pagos)
-                    {   
-            ?>
-            <tr class="pago_<?= $estudiante['id']; ?> fila_pagos">
-                <td colspan="8">
-                <table class="table table-bordered align-middle">
-                    <thead class="table-secondary">
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Mes</th>
-                            <th>Pension</th>
-                            <th>N° recibo manual</th>
-                        </tr>
-                    </thead>
-            <?php
-                        foreach($pagos as $pago)
-                        {
-            ?>
-                        <tbody>
-                            <tr>
-                                <td><?= $pago['fecha']?></td>
-                                <td><?= $pago['mes']?></td>
-                                <td><?= $pago['pension']?></td>
-                                <td><?= $pago['num_recibo_manual']?></td>
-                            </tr>
-                        </tbody>
-            <?php
+    ?>
+    <?php if(isset($estudiantes) && $estudiantes && count($estudiantes) > 0) :?> 
+    <h2 class="title-results">INFORMACION DEL ESTUDIANTE:</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            <table class="table table-bordered align-middle">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>N° documento</th>
+                        <th>Fecha Nacimiento</th>
+                        <th>Genero</th>
+                        <th>Jornada</th>
+                        <th>Grado</th>
+                        <?php if( $documento != 0) :?>
+                        <th>Pagos</th>
+                        <?php else :?>
+                            <th>Acciones</th>
+                        <?php endif ?>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach($estudiantes as $estudiante):?>   
+                      <?php  
+                        if( $documento == '0' ){
+  
+                        }else {
+                            $pagos = showPayments($conx, $estudiante['id']);
                         }
-            ?>
-                    </table>
-            
-                </td>
-            </tr>
-            <?php
-                    }
-                }
-            ?>
-            </tbody>
-        </table>
+                        ?>
+                <tr>
+                    <td><?php echo  ($estudiante['nombre_estudiante']); ?></td>
+                    <td><?php echo  ($estudiante['apellidos_estudiante']); ?></td>
+                    <td><?php echo  ($estudiante['num_documento_estudiante']); ?></td>
+                    <td><?php echo  ($estudiante['fecha_nacimiento']);?></td>
+                    <td><?php echo  ($estudiante['genero']);?></td>
+                    <td><?php echo  ($estudiante['jornada']);?></td>
+                    <td><?php echo  ($estudiante['grado']);?></td>
+                    <?php if(isset($pagos)):?>
+                    <td align="center"><?= ($pagos ? '<b id="btnPagos_'.$estudiante['id'].'" class="pagos" title="Ver pagos" data-id="'.$estudiante['id'].'">+</b>': ''); ?></td>
+                    <?php elseif ($documento == 0) :?>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    <i class="fa fa-cog"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="ver.php?id=<?php echo $estudiante['id'] ?>"><i class="fa fa-search"></i> Ver</a></li>
+                                    <li><a class="dropdown-item" href="editar.php?id=<?php echo $estudiante['id'] ?>"><i class="fa fa-pen"></i> Editar</a></li>
+                                    <li><a class="dropdown-item bg-danger btn-delete" data-id="<?php echo $estudiante['id'] ?>" href="javascript:;"><i class="fa fa-trash"></i> Eliminar</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    <?php endif?>
+                </tr>
+                <?php if(isset($pagos)):?>
+                    <?php if($pagos):?>
+                        <tr class="pago_<?= $estudiante['id']; ?> fila_pagos">
+                            <td colspan="8">
+                            <table class="table table-bordered align-middle">
+                                <thead class="table-secondary">
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Mes</th>
+                                        <th>Pension</th>
+                                        <th>N° recibo manual</th>
+                                    </tr>
+                                </thead>
+                        <?php foreach($pagos as $pago):?>
+                                    <tbody>
+                                        <tr>
+                                            <td><?= $pago['fecha']?></td>
+                                            <td><?= $pago['mes']?></td>
+                                            <td><?= $pago['pension']?></td>
+                                            <td><?= $pago['num_recibo_manual']?></td>
+                                        </tr>
+                                    </tbody>
+                        <?php endforeach?>
+                                </table>
+                        
+                            </td>
+                        </tr>
+                        <?php endif?>
+                        <?php endif?>
+                <?php endforeach?>
+                </tbody>
+            </table>
+            </div>
         </div>
     </div>
-</div>
-<?php
-    if($documento)
-    {
-?>
-<h2 class="title-results">INFORMACION DEL ACUDIENTE:</h2>
-<div class="container">
-    <div class="row">
-        <div class="col">
-         <table class="table table-bordered align-middle">
-            <thead class="table-secondary">
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>N° documento</th>
-                    <th>Direccion</th>
-                    <th>Telefono</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    foreach($estudiantes as $estudiante)
-                    {
-                ?>
-                <tr>
-                    <td><?php echo  ($estudiante['nombre_acudiente']);?></td>
-                    <td><?php echo  ($estudiante['apellidos_acudiente']);?></td>
-                    <td><?php echo  ($estudiante['num_documento_acudiente']);?></td>
-                    <td><?php echo  ($estudiante['direccion']);?></td>
-                    <td><?php echo  ($estudiante['telefono']);?></td>
-                    
-                </tr>
-                <?php
-                    }
-                ?>
-            </tbody>
-        </table>
+    <?php if($documento) :?>
+    <h2 class="title-results">INFORMACION DEL ACUDIENTE:</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            <table class="table table-bordered align-middle">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>N° documento</th>
+                        <th>Direccion</th>
+                        <th>Telefono</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($estudiantes as $estudiante):?>
+                    <tr>
+                        <td><?php echo  ($estudiante['nombre_acudiente']);?></td>
+                        <td><?php echo  ($estudiante['apellidos_acudiente']);?></td>
+                        <td><?php echo  ($estudiante['num_documento_acudiente']);?></td>
+                        <td><?php echo  ($estudiante['direccion']);?></td>
+                        <td><?php echo  ($estudiante['telefono']);?></td>
+                        
+                    </tr>
+                    <?php endforeach?>
+                </tbody>
+            </table>
+            </div>
         </div>
     </div>
-</div>
-<?php
-}
-        // echo  ($estudiante [0] ['nombre_estudiante']);
-        // echo  ($estudiante [0] ['apellidos_estudiante']);
-        // echo  ($estudiante [0] ['num_documento_estudiante']);
-        // echo  ($estudiante [0] ['fecha_nacimiento']);
-        // echo  ($estudiante [0] ['genero']);
-        // echo  ($estudiante [0] ['jornada']);
-        // echo  ($estudiante [0] ['grado']);
+    <?php endif ?>  
 
-        // echo  ($estudiante [0] ['nombre_acudiente']);
-        // echo  ($estudiante [0] ['apellidos_acudiente']);
-        // echo  ($estudiante [0] ['num_documento_acudiente']);
-        // echo  ($estudiante [0] ['direccion']);
-        // echo  ($estudiante [0] ['telefono']);
+    <?php else :?>
+        <?php
+            echo ("<script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'El estudiante no esta registrado',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                </script>");
+    ?>
+<!-- validacion de existencia de estudiantes-->
+<?php endif ?> 
+<!-- end if de la validacion de POST -->
+<?php endif ?> 
 
-
-    }else {
-        echo ("<script>
-            Swal.fire({
-                position: 'center',
-                icon: 'error',
-                title: 'El estudiante no esta registrado',
-                showConfirmButton: false,
-                timer: 1500
-            })
-            </script>");
-    }
-};
 
 
 

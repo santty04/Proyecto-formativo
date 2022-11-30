@@ -1,3 +1,4 @@
+
 <?php
 if($_SESSION['trole'] != 'Admin') {
     $_SESSION['error'] = "Content Not Allowed";

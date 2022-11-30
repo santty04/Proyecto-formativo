@@ -1,8 +1,7 @@
-<?php $title = 'Dashboard' ?>
+<?php $title = 'Busqueda de estudiante' ?>
     <?php require 'config/app.php' ?>
     <?php include 'config/database.php'  ?>
     <?php include 'includes/security.inc' ?>
-    <?php include 'includes/protect-admin.inc' ?>
     <?php include 'includes/scripts.inc' ?>
 <!DOCTYPE html>
 <html lang="en">

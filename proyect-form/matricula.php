@@ -1,4 +1,4 @@
-<?php $title = 'Dashboard' ?>
+
     <?php require 'config/app.php' ?>
     <?php include 'config/database.php'  ?>
     <?php include 'includes/security.inc' ?>

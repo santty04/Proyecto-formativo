@@ -1,4 +1,4 @@
-    <?php $title = 'Dashboard' ?>
+
     <?php require 'config/app.php' ?>
     <?php include 'config/database.php'  ?>
     <?php include 'includes/security.inc' ?>
@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home-Admin</title>
+    <title>Panel administrativo</title>
     <link rel="stylesheet" href="public/css/panel-admin.css">
     <link rel="stylesheet" href="public/css/fontawesome.min.css">
 </head>

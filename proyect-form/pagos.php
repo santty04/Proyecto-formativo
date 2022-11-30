@@ -1,4 +1,4 @@
-<?php $title = 'Pagos' ?>
+
     <?php require 'config/app.php' ?>
     <?php include 'config/database.php'  ?>
     <?php include 'includes/security.inc' ?>
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="public/css/fontawesome.min.css">
     <link rel="stylesheet" href="public/css/bootstrap-reboot.min.css">
     <link rel="stylesheet" href="public/css/bootstrap.min.css">
-    <title>Busqueda de estudiantes</title>
+    <title>Pagos</title>
     <style>
         * {
             overflow: hidden;

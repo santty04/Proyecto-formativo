@@ -60,42 +60,8 @@
 
     }
 
-    // Update Pokemon
-    function updatePokemon($conx, $id, $name, $type, $strength, $stamina, $speed, $accuracy, $image, $trainer_id) {
-        try {
-            if($image != null) {
-                $sql = "UPDATE pokemons SET name = :name, type = :type, strength = :strength, 
-                        stamina = :stamina, speed = :speed, accuracy = :accuracy, image = :image, 
-                        trainer_id = :trainer_id WHERE id = :id ";
-            } else {
-                $sql = "UPDATE pokemons SET name = :name, type = :type, strength = :strength, 
-                        stamina = :stamina, speed = :speed, accuracy = :accuracy, 
-                        trainer_id = :trainer_id WHERE id = :id ";
-            }
-                
-            $stm = $conx->prepare($sql);
-            $stm->bindparam(":id", $id);
-            $stm->bindparam(":name", $name);
-            $stm->bindparam(":type", $type);
-            $stm->bindparam(":strength", $strength);
-            $stm->bindparam(":stamina", $stamina);
-            $stm->bindparam(":speed", $speed);
-            $stm->bindparam(":accuracy", $accuracy);
-            if($image != null) {
-                $stm->bindparam(":image", $image);
-            }
-            $stm->bindparam(":trainer_id", $trainer_id);
-            if($stm->execute()) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-
-    }
-
+    
+    
     // List All Pokemons
     function listAllPokemons($conx) {
         try {
@@ -179,6 +145,7 @@
                 $_SESSION['temail'] = $user['email'];
                 $_SESSION['trole']  = $user['role'];
                 $_SESSION['tphoto'] = $user['photo'];
+                $_SESSION['timeout'] = time();
                 return true;
             } else {
                 return false;
@@ -384,7 +351,7 @@
        // Show Student Grade
        function showStudentGrade($conx, $grado) {
         try {
-            $sql = "select e.nombre as nombre_estudiante, e.apellidos as apellidos_estudiante, e.num_documento as num_documento_estudiante, fecha_nacimiento , genero , jornada , grado 
+            $sql = "select e.id as id , e.nombre as nombre_estudiante, e.apellidos as apellidos_estudiante, e.num_documento as num_documento_estudiante, fecha_nacimiento , genero , jornada , grado 
             from estudiantes e where e.grado = :grad";
             $stm = $conx->prepare($sql);
             $stm->bindparam(":grad", $grado);
@@ -457,3 +424,106 @@
             echo $e->getMessage();
         }
     }
+
+    function viewStudent($conx, $id) {
+        try {
+            $sql = "select e.id, e.nombre as nombre_estudiante, e.apellidos as apellidos_estudiante, e.num_documento as num_documento_estudiante, fecha_nacimiento , genero , jornada , grado , a.id as id_acudiente, a.nombre as nombre_acudiente, a.apellidos as apellidos_acudiente, a.num_documento as num_documento_acudiente, direccion, telefono
+            from estudiantes as e inner join acudiente as a
+            on e.id = a.id_estudiante
+            where e.id = :id";
+            $stm = $conx->prepare($sql);
+            $stm->bindparam(":id", $id);
+            $stm->execute();
+            return $stm->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    // Update Student
+    function updateStudent($conx, $id_estudiante, $nombre_estudiante, $apellidos_estudiante, $grado, $documento_estudiante, $fecha_nacimiento, $genero, $jornada) {
+    // function updateStudent($conx, $id_estudiante, $nombre_estudiante, $apellidos_estudiante, $grado, $documento_estudiante, $fecha_nacimiento, $genero, $jornada) {
+        try {
+            // , $nombre_acudiente, $apellidos_acudiente, $direccion, $documento_acudiente, $telefono
+            // $sql = "UPDATE e, a set e.nombre = :nombre_estudiante, a.nombre = :nombre_acudiente 
+            //         from estudiantes as e , acudiente as a
+            //         where id = :id_estudiante";
+            // // $sql = "UPDATE e, a SET e.nombre = :nombre_estudiante, e.apellidos = :apellidos_estudiante, e.grado = :grado, e.num_documento = :num_documento_estudiante, 
+            // //         e.fecha_nacimiento = :fecha_nacimiento, e.genero = :genero, e.jornada = :jornada, 
+            // //         a.nombre = :nombre_acudiente, a.apellidos = :apellidos_acudiente, a.direccion = :direccion, a.num_documento = :documento_acudiente, a.telefono = :telefono 
+            // //         from estudiantes as e inner join acudiente as a
+            // //         on e.id = a.id_estudiante 
+            // //          WHERE e.id = :id_estudiante ";
+            
+                
+            // // $stm = $conx->prepare($sql);
+            // // $stm->bindparam(":id_estudiante", $id_estudiante);
+            // // $stm->bindparam(":nombre_estudiante", $nombre_estudiante);
+            // // $stm->bindparam(":apellidos_estudiante", $apellidos_estudiante);
+            // // $stm->bindparam(":grado", $grado);
+            // // $stm->bindparam(":documento_estudiante", $documento_estudiante);
+            // // $stm->bindparam(":fecha_nacimiento", $fecha_nacimiento);
+            // // $stm->bindparam(":genero", $genero);
+            // // $stm->bindparam(":jornada", $jornada);
+            // // $stm->bindparam(":apellidos_acudiente", $apellidos_acudiente);
+            // // $stm->bindparam(":direccion", $direccion);
+            // // $stm->bindparam(":documento_acudiente", $documento_acudiente);
+            // // $stm->bindparam(":telefono", $telefono);
+            // $stm = $conx->prepare($sql);
+            // $stm->bindparam(":id_estudiante", $id_estudiante);
+            // $stm->bindparam(":nombre_estudiante", $nombre_estudiante);
+            // $stm->bindparam(":nombre_acudiente", $nombre_acudiente);
+
+            $sql = "UPDATE estudiantes set nombre = :nombre_estudiante, apellidos = :apellidos_estudiante, grado = :grado, num_documento = :documento_estudiante, fecha_nacimiento = :fecha_nacimiento, genero = :genero, jornada = :jornada
+            where id = :id_estudiante";
+
+            // $sql = "UPDATE estudiantes set nombre = :nombre_estudiante, apellidos = :apellidos_estudiante, grado = :grado, num_documento = :num_documento_estudiante, fecha_nacimiento = :fecha_nacimiento, genero = :genero, jornada = :jornada
+            // where id = :id_estudiante";
+            $stm = $conx->prepare($sql);
+            $stm->bindparam(":id_estudiante", $id_estudiante);
+            $stm->bindparam(":nombre_estudiante", $nombre_estudiante);
+            $stm->bindparam(":apellidos_estudiante", $apellidos_estudiante);
+            $stm->bindparam(":grado", $grado);
+            $stm->bindparam(":documento_estudiante", $documento_estudiante);
+            $stm->bindparam(":fecha_nacimiento", $fecha_nacimiento);
+            $stm->bindparam(":genero", $genero);
+            $stm->bindparam(":jornada", $jornada);
+
+            if($stm->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+    }
+
+    function updateAcudent($conx, $id_acudiente, $nombre_acudiente, $apellidos_acudiente, $direccion, $documento_acudiente, $telefono ) {
+    
+            try{
+                echo "<h1>$direccion</h1>";
+                $sql = "UPDATE acudiente set nombre = :nombre_acudiente, apellidos = :apellidos_acudiente, direccion = :direccion, num_documento = :documento_acudiente, telefono = :telefono
+                where id = :id_acudiente";
+                // $sql = "UPDATE acudiente set nombre = :nombre_acudiente, apellidos = :apellidos_acudiente, num_documento = :documento_acudiente, direccion = :direccion, telefono = :telefono
+                // where id = :id_acudiente";
+    
+                $stm = $conx->prepare($sql);
+                $stm->bindparam(":id_acudiente", $id_acudiente);
+                $stm->bindparam(":nombre_acudiente", $nombre_acudiente);
+                $stm->bindparam(":apellidos_acudiente", $apellidos_acudiente);
+                $stm->bindparam(":direccion", $direccion);
+                $stm->bindparam(":documento_acudiente", $documento_acudiente);
+                $stm->bindparam(":telefono", $telefono);
+    
+                if($stm->execute()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+    
+        }
