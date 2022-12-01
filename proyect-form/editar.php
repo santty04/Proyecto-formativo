@@ -14,12 +14,99 @@
     <link rel="stylesheet" href="public/css/bootstrap-reboot.min.css">
     <link rel="stylesheet" href="public/css/bootstrap.min.css">
     <style>
+
+        /* Header */
+                header img {
+            position: absolute;
+            width: 241px;
+            height: 262px;
+            left: 1500px;
+            top: 80px;
+        }
         .estudiante{
-            margin-top: 83px;
+            margin-top: 50px;
+        }
+
+        /* nav */
+        div.nav {
+            position: absolute;
+            width: 94px;
+            height: 425px;
+            left: 0px;
+            top: 308px;
+            background: #039041;
+            border-radius: 0px 50px 50px 0px;
+        }
+        div.nav svg.exit {
+            box-sizing: border-box;
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            left: 6px;
+            margin-top: 25px;
+            color: #fff;
+        }
+        div.nav svg.user-plus {
+            box-sizing: border-box;
+            position: absolute;
+            left: 5px;
+            margin-top: 110px;
+            width: 80px;
+            height: 80px;
+            color: #fff;
+        }
+        div.nav svg.user {
+            box-sizing: border-box;
+            position: absolute;
+            left: 2px;
+            margin-top: 210px;
+            width: 80px;
+            height: 80px;
+            color: #fff;
+        }
+        div.nav svg.cards {
+            box-sizing: border-box;
+            position: absolute;
+            left: 3px;
+            margin-top: 310px;
+            width: 80px;
+            height: 80px;
+            color: #fff;
+        }
+        div.nav {
+            border:none;
         }
     </style>
+<header>
+    <img src="public/images/logo-liceo.png" alt="">
+</header>
 <body>
 <main class="container">
+<div class="nav">
+        <a href="search-student.php">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 exit">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              
+        </a>
+        <a href="matricula.php">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 user-plus">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+              </svg>
+        </a>
+        <a href="" class="btn disabled" role="button" aria-disabled="true">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 user">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+              </svg>
+              
+        </a>
+        <a href="pagos.php">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cards">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
+              </svg>
+              
+        </a>
+    </div>
         <section class="row">
             <div class="col-md-4 offset-md-5 my-3 mb-1">
                 <h1>
@@ -29,10 +116,7 @@
             </div>
             <div class="row">
             <div class="col-md-4 offset-md-1 my-5">
-            <a href="search-student.php" class="btn btn-outline-dark">
-                    <i class="fa fa-arrow-left"></i>
-                    Volver
-                </a>
+            
                 <hr>
                 <h1 class="text-center">
                     Estudiante
@@ -79,7 +163,7 @@
                         <label for="fecha_nacimiento" class="form-label">Fecha de nacimiento:</label>
                         <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="<?php echo $st['fecha_nacimiento'] ?>" placeholder="Fecha de nacimiento" required>
                     </div>
-                    <div class="genero">
+                    <div class="genero mb-3">
                         <label for="">Genero:</label>
                         <br>
                         <select name="genero" id="genero" class="form-select" required>
@@ -88,7 +172,7 @@
                             <option value="femenino" <?php if($st['genero'] == 'femenino'):   ?> selected <?php endif ?>>Femenino</option>
                         </select>
                     </div>
-                    <div class="mb-3">
+                    <div>
                         <label for="jornada" class="form-label">Jornada:</label>
                         <input type="text" class="form-control" id="jornada" name="jornada" value="<?php echo $st['jornada'] ?>" placeholder="Jornada" required>
                     </div>
@@ -100,7 +184,7 @@
                 <h1 class="text-center">
                     Acudiente
                 </h1>
-                <input type="text" name="id_acudiente" value="<?php echo $st['id_acudiente'] ?>">
+                <input type="text" hidden name="id_acudiente" value="<?php echo $st['id_acudiente'] ?>">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nombre:</label>
                         <input type="text" class="form-control" id="nombre_acudiente" name="nombre_acudiente" value="<?php echo $st['nombre_acudiente'] ?>" placeholder="Nombre del Acudiente" required>
@@ -159,7 +243,7 @@
                     ?>
             </div>
         </div>
-        <div class="mb-3 col-md-6 offset-md-3">
+        <div class="mb-5  col-md-6 offset-md-3">
             <button type="submit" class="btn btn-success btn-lg form-control">
                 <i class="fa fa-save"></i>
                 Guardar

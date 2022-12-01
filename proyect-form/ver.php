@@ -30,8 +30,8 @@
             position: absolute;
             width: 241px;
             height: 262px;
-            left: 1300px;
-            top: 0px;
+            left: 1500px;
+            top: 80px;
         }
         /* nav */
         div.nav {
@@ -79,16 +79,20 @@
             height: 80px;
             color: #fff;
         }
-       
+
+        /* body */
+        .continer {
+            margin-top: 200px;
+        }
     </style>
 </head>
 <header>
-    <h1>Busqueda de estudiantes</h1>
+
     <img src="public/images/logo-liceo.png" alt="">
 </header>
 <body>
     <div class="nav">
-        <a href="dashboard-admin.php">
+        <a href="search-student.php">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 exit">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -105,25 +109,22 @@
               </svg>
               
         </a>
-        <a hrfef="pagos.php">
+        <a href="pagos.php">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cards">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
               </svg>
               
         </a>
     </div>
-    <main class="container">
+    <main class="container continer">
         <section class="row">
-            <div class="col-md-8 offset-md-2 my-5">
-                <a href="search-student.php" class="btn btn-outline-dark">
-                    <i class="fa fa-arrow-left"></i>
-                    Volver
-                </a>
-                <hr>
+            <div class="col-md-8 offset-md-1  my-5 ">
+
                 <h1 class="text-center">
                     <i class="fa fa-search"></i>
                     Vista Estudiante
                 </h1>
+                <hr>
             <?php      
             if($_GET){
                 $id = $_GET['id'];

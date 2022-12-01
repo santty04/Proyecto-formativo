@@ -463,18 +463,18 @@ if(isset($_POST["documento"])) {
             if ($id != -1) {
                 addDetail($conx, $id, $desayuno, $media_manana, $media_tarde, $almuerzo, $transporte, $derecho_grado, $matricula);
 
-                // echo ("<script>
-                //         Swal.fire({
-                //             position: 'center',
-                //             icon: 'success',
-                //             title: 'El estudiante se a registrado correctamente',
-                //             showConfirmButton: true,
-                //             timer: 1500
-                //         })
-                //     </script>");
+                echo ("<script>
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'El estudiante se a registrado correctamente',
+                            showConfirmButton: true,
+                            timer: 1500
+                        })
+                    </script>");
                 // echo "<script>
                 //         window.location.replace('dashboard-admin.php')
-                //       </script>";
+                //       </script>";    
             }
              else {
                 echo ("Hola");
