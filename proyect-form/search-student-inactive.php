@@ -274,7 +274,7 @@
                         }
                         ?>
                 <tr>
-                    <?php if ($estudiante['estado'] == 'activo') :?>
+                    <?php if ($estudiante['estado'] == 'inactivo') :?>
                     <td><?php echo  ($estudiante['nombre_estudiante']); ?></td>
                     <td><?php echo  ($estudiante['apellidos_estudiante']); ?></td>
                     <td><?php echo  ($estudiante['num_documento_estudiante']); ?></td>
@@ -294,7 +294,7 @@
                                 <ul class="dropdown-menu dropdown-menu-dark">
                                     <li><a class="dropdown-item" href="ver.php?id=<?php echo $estudiante['id'] ?>"><i class="fa fa-search"></i> Ver</a></li>
                                     <li><a class="dropdown-item" href="editar.php?id=<?php echo $estudiante['id'] ?>"><i class="fa fa-pen"></i> Editar</a></li>
-                                    <li><a class="dropdown-item bg-danger btn-inactive" data-id="<?php echo $estudiante['id'] ?>" href="inactivar:;"><i class="fa-solid fa-eye-slash"></i> Inactivar</a></li>
+                                    <li><a class="dropdown-item bg-danger btn-active" data-id="<?php echo $estudiante['id'] ?>" href="activar:;"><i class="fa-solid fa-eye-slash"></i> Activar</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -417,7 +417,7 @@
                     confirmButtonText: 'Yes, delete it!'
                     }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.replace('inactivar.php?id=' + $id)
+                        window.location.replace('activar.php?id=' + $id)
                     }
                 })
             })

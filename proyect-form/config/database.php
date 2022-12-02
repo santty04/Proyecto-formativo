@@ -109,10 +109,13 @@
         }
     }
 
-    // Delete Pokemon
-    function deletePokemon($conx, $id) {
+    // Delete Student
+    function deleteStudent($conx, $id) {
         try {
-            $sql = "DELETE FROM pokemons WHERE id = :id";
+            $sql = "DELETE FROM estudiantes
+                inner join acudiente
+                ON estudiantes.id = acudiente.id_estudiante
+             WHERE id = :id";
             $stm = $conx->prepare($sql);
             $stm->bindparam(":id", $id);
             if($stm->execute()) {
@@ -124,6 +127,8 @@
             echo $e->getMessage();
         }
     }
+
+  
 
     // - - - - - - - - - - - - - - - - - - - - - - - - 
     // usuarios
@@ -335,7 +340,7 @@
     // Show Student
     function showStudent($conx, $documento) {
         try {
-            $sql = "select e.id, e.nombre as nombre_estudiante, e.apellidos as apellidos_estudiante, e.num_documento as num_documento_estudiante, fecha_nacimiento , genero , jornada , grado , a.nombre as nombre_acudiente, a.apellidos as apellidos_acudiente, a.num_documento as num_documento_acudiente, direccion, telefono
+            $sql = "select e.id, e.nombre as nombre_estudiante, e.apellidos as apellidos_estudiante, e.num_documento as num_documento_estudiante, fecha_nacimiento , genero , jornada , grado , e.estado as estado, a.nombre as nombre_acudiente, a.apellidos as apellidos_acudiente, a.num_documento as num_documento_acudiente, direccion, telefono
             from estudiantes as e inner join acudiente as a
             on e.id = a.id_estudiante
             where e.num_documento = :doc";
@@ -351,7 +356,7 @@
        // Show Student Grade
        function showStudentGrade($conx, $grado) {
         try {
-            $sql = "select e.id as id , e.nombre as nombre_estudiante, e.apellidos as apellidos_estudiante, e.num_documento as num_documento_estudiante, fecha_nacimiento , genero , jornada , grado 
+            $sql = "select e.id as id , e.nombre as nombre_estudiante, e.apellidos as apellidos_estudiante, e.num_documento as num_documento_estudiante, fecha_nacimiento , genero , jornada , grado, estado 
             from estudiantes e where e.grado = :grad";
             $stm = $conx->prepare($sql);
             $stm->bindparam(":grad", $grado);
@@ -527,3 +532,38 @@
             }
     
         }
+        
+        // Inactive Student
+        function inactiveStudent($conx, $id) {
+            try {
+                $sql = "UPDATE estudiantes set estado = 'inactivo'
+                 WHERE id = :id";
+                $stm = $conx->prepare($sql);
+                $stm->bindparam(":id", $id);
+                if($stm->execute()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+        }
+
+        // active Student
+        function activeStudent($conx, $id) {
+            try {
+                $sql = "UPDATE estudiantes set estado = 'activo'
+                 WHERE id = :id";
+                $stm = $conx->prepare($sql);
+                $stm->bindparam(":id", $id);
+                if($stm->execute()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+        }
+    
