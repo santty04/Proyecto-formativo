@@ -145,7 +145,7 @@
 
         .fecha {
             position: relative;
-            bottom: 145px;
+            bottom: 150px;
             left: 600px;
         }
         .fecha input.inpt {
@@ -162,6 +162,11 @@
             width: 250px;
         }
 
+        .observaciones {
+            position: relative;
+            left:300px;
+            top:-240px;
+        }
         .adicionales {
             position: relative;
             bottom: 170px;
@@ -298,7 +303,7 @@
             <br>
             <input type="number" class="inpt" name="documento" id="documento" value="<?= isset($_POST["documento"]) ? $_POST["documento"] : ''; ?>">
         </div>
-        <button class="btn-search">
+        <button class="btn-search mb-3  ">
             <i class="fa-solid fa-magnifying-glass"></i>
             Buscar
         </button>
@@ -359,6 +364,11 @@ if(isset($_POST["documento"])) {
                 <label for="">N° Recibo Manual: </label>
                 <br>
                 <input type="number" class="inpt" name="num_recibo_manual" id="num_recibo_manual">
+            </div>
+            <div class="observaciones">
+                <label for="">Observaciones: </label>
+                <br>
+                <input type="text" class="inpt" name="observaciones" id="observaciones">
             </div>
 
 

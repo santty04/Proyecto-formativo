@@ -144,6 +144,18 @@
         .fila_pagos{
             display: none;
         }
+
+        .inactivos {
+            text-decoration:none;
+            color:#272727;
+            border-bottom:2px solid #272727;
+            font-size: 20px;
+            margin-left: 570px;
+        }
+        .inactivos:hover {
+            color: rgb(255, 0, 0);
+            border-bottom: 2px solid rgb(255, 0, 0)
+        }
     </style>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -219,6 +231,10 @@
             <i class="fa-solid fa-magnifying-glass"></i>
             Buscar
         </button>
+        <a href="search-student-inactive.php"  class="inactivos">
+            <i class="fa-solid fa-eye-slash"></i>
+            Estudiantes inactivos
+        </a>
     </div>
     </form>
     
