@@ -322,6 +322,8 @@ if(isset($_POST["documento"])) {
     // print_r ($estudiante [0]);
     // echo ('</pre>');
     if($estudiante && count($estudiante) > 0) { ?>
+    <?php foreach ($estudiante as $estudiantes): ?>
+    <?php if ($estudiantes['estado'] == 'activo'): ?>
     <form action="pagos.php" method="POST">
         <input type="hidden" name="num_documento" id="num_documento" value="<?= $estudiante[0]['id']; ?>" />
         <div class="inputs">
@@ -414,6 +416,8 @@ if(isset($_POST["documento"])) {
         </div>
         </div>
     </form>
+    <?php endif?>
+    <?php endforeach?>
     <?php include 'includes/scripts.inc' ?>
 <?php
 

@@ -241,12 +241,22 @@
     // print_r ($estudiante [0]);
     // echo ('</pre>');
     ?>
-    <?php if(isset($estudiantes) && $estudiantes && count($estudiantes) > 0) :?> 
+    <?php if(isset($estudiantes) && $estudiantes && count($estudiantes) > 0) :?>
+        <?php foreach($estudiantes as $estudiante):?>   
+        <?php  
+        if( $documento == '0' ){
+
+        }else {
+            $pagos = showPayments($conx, $estudiante['id']);
+        }
+        ?>
+        <?php if ($estudiante['estado'] == 'inactivo') :?> 
     <h2 class="title-results">INFORMACION DEL ESTUDIANTE</h2>
     <div class="container">
         <div class="row">
             <div class="col">
             <table class="table table-bordered align-middle">
+            
                 <thead class="table-secondary">
                     <tr>
                         <th>Nombre</th>
@@ -257,24 +267,13 @@
                         <th>Jornada</th>
                         <th>Grado</th>
                         <th>Estado</th>
-                        <?php if( $documento != 0) :?>
                         <th>Pagos</th>
-                        <?php else :?>
-                            <th>Acciones</th>
-                        <?php endif ?>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                <?php foreach($estudiantes as $estudiante):?>   
-                      <?php  
-                        if( $documento == '0' ){
-  
-                        }else {
-                            $pagos = showPayments($conx, $estudiante['id']);
-                        }
-                        ?>
+                
                 <tr>
-                    <?php if ($estudiante['estado'] == 'inactivo') :?>
                     <td><?php echo  ($estudiante['nombre_estudiante']); ?></td>
                     <td><?php echo  ($estudiante['apellidos_estudiante']); ?></td>
                     <td><?php echo  ($estudiante['num_documento_estudiante']); ?></td>
@@ -285,7 +284,6 @@
                     <td><?php echo  ($estudiante['estado']);?></td>
                     <?php if(isset($pagos)):?>
                     <td align="center"><?= ($pagos ? '<b id="btnPagos_'.$estudiante['id'].'" class="pagos" title="Ver pagos" data-id="'.$estudiante['id'].'">+</b>': ''); ?></td>
-                    <?php elseif ($documento == 0) :?>
                         <td>
                             <div class="dropdown">
                                 <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
@@ -294,7 +292,7 @@
                                 <ul class="dropdown-menu dropdown-menu-dark">
                                     <li><a class="dropdown-item" href="ver.php?id=<?php echo $estudiante['id'] ?>"><i class="fa fa-search"></i> Ver</a></li>
                                     <li><a class="dropdown-item" href="editar.php?id=<?php echo $estudiante['id'] ?>"><i class="fa fa-pen"></i> Editar</a></li>
-                                    <li><a class="dropdown-item bg-danger btn-active" data-id="<?php echo $estudiante['id'] ?>" href="activar:;"><i class="fa-solid fa-eye-slash"></i> Activar</a></li>
+                                    <li><a class="dropdown-item bg-success btn-active" data-id="<?php echo $estudiante['id'] ?>" href="javascript:;"><i class="fa-solid fa-eye"></i> Activar</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -337,6 +335,7 @@
         </div>
     </div>
     <?php if($documento) :?>
+    <?php if($estudiante['estado'] == 'inactivo') :?>
     <h2 class="title-results">INFORMACION DEL ACUDIENTE:</h2>
     <div class="container">
         <div class="row">
@@ -368,6 +367,7 @@
         </div>
     </div>
     <?php endif ?>  
+    <?php endif ?>  
 
     <?php else :?>
         <?php
@@ -389,7 +389,6 @@
 
 
 
-?>
 
 <script>
         $(document).ready(function () {
@@ -404,7 +403,7 @@
             <?php endif ?>
             <?php unset($_SESSION['message']) ?>
             // - - - - - - - - - - -
-            $('.btn-inactive').click(function (e) {
+            $('.btn-active').click(function (e) {
                 e.preventDefault()
                 $id = $(this).attr('data-id')
                 Swal.fire({
