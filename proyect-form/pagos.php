@@ -131,6 +131,10 @@
             border: solid 2px #373232;
 
         }
+        .A{
+            color: #fff;
+            cursor: pointer;
+        }
 
         .pension {
             position: relative;
@@ -143,18 +147,9 @@
             width: 250px;
         }
 
-        .fecha {
-            position: relative;
-            bottom: 150px;
-            left: 600px;
-        }
-        .fecha input.inpt {
-            width: 250px;
-            height: 27px;
-        }
-
         .recibo {
             position: relative;
+            left:600px;
             bottom: 150px; 
         }
 
@@ -164,8 +159,9 @@
 
         .observaciones {
             position: relative;
-            left:300px;
-            top:-240px;
+            left:0px;
+            top:-150px;
+            margin-bottom:20px;
         }
         .adicionales {
             position: relative;
@@ -357,11 +353,6 @@ if(isset($_POST["documento"])) {
                 <br>
                 <input  type="number" class="inpt" name="pension" id="pension">
             </div>
-            <div class="fecha">
-                <label for="">Fecha: </label>
-                <br>
-                <input type="date" class="inpt" name="fecha" id="fecha">
-            </div>
             <div class="recibo">
                 <label for="">N° Recibo Manual: </label>
                 <br>
@@ -412,6 +403,7 @@ if(isset($_POST["documento"])) {
             </div>
             <button class="enviar-btn-search">
                 Enviar
+            <!-- <a class="A" href="PDF/invoice.php" target="_blanck">Enviar</a> -->
             </button>
         </div>
         </div>
@@ -432,22 +424,11 @@ if(isset($_POST["documento"])) {
                         icon: 'error',
                         title: 'El estudiante no esta registrado',
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 2000
                     })
                     </script>");
         }
     }
-    //else {
-    //     echo ("<script>
-    //         Swal.fire({
-    //             position: 'center',
-    //             icon: 'error',
-    //             title: 'El estudiante no esta registrado',
-    //             showConfirmButton: false,
-    //             timer: 1500
-    //         })
-    //         </script>");
-    // }
 }
 
     if(isset($_POST["mes"])) {
@@ -460,6 +441,7 @@ if(isset($_POST["documento"])) {
             $mes                     = $_POST['mes'];
             $pension                 = $_POST['pension'];
             $num_recibo_manual       = $_POST['num_recibo_manual'];
+            //$observaciones           = $_POST['observaciones'];
 
             // Detalles
             $desayuno               = $_POST['desayuno'];
@@ -481,9 +463,9 @@ if(isset($_POST["documento"])) {
                         Swal.fire({
                             position: 'center',
                             icon: 'success',
-                            title: 'El estudiante se a registrado correctamente',
-                            showConfirmButton: true,
-                            timer: 1500
+                            title: 'El pago se  registrado exitosamente!',
+                            showConfirmButton: false,
+                            timer: 2000
                         })
                     </script>");
                 // echo "<script>

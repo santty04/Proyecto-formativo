@@ -252,18 +252,20 @@
         $estudiantes = showStudent($conx, $documento);
     }
     
+    
     // echo "<pre>";
     // //print_r($estudiante);
     // print_r ($estudiante [0]);
     // echo ('</pre>');
     ?>
     <?php if(isset($estudiantes) && $estudiantes && count($estudiantes) > 0) :?> 
-    <h2 class="title-results">INFORMACION DEL ESTUDIANTE</h2>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <?php foreach($estudiantes as $estudiante):?>   
-                    <?php if ($estudiante['estado'] == 'activo') :?>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <?php foreach($estudiantes as $estudiante):?>   
+                        <?php if ($estudiante['estado'] == 'activo') :?>
+                    <h2 class="title-results">INFORMACION DEL ESTUDIANTE</h2>
             <table class="table table-bordered align-middle">
                 <thead class="table-secondary">
                     <tr>
@@ -353,6 +355,7 @@
         </div>
     </div>
     <?php if($documento) :?>
+    <?php if ($estudiante['estado'] == 'activo') :?>
     <h2 class="title-results">INFORMACION DEL ACUDIENTE:</h2>
     <div class="container">
         <div class="row">
@@ -384,6 +387,18 @@
         </div>
     </div>
     <?php endif ?>  
+    <?php endif ?>  
+    <?php if($estudiante['estado'] == 'inactivo')
+        echo ("<script>
+        Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'El estudiante con este numero de documento esta inactivo',
+            showConfirmButton: false,
+            timer: 2500
+        })
+        </script>");
+    ?>
 
     <?php else :?>
         <?php
@@ -393,7 +408,7 @@
                     icon: 'error',
                     title: 'El estudiante no esta registrado',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 2000
                 })
                 </script>");
     ?>
@@ -411,7 +426,7 @@
         $(document).ready(function () {
             <?php if(isset($_SESSION['message'])): ?>
             Swal.fire({
-                position: 'top-end',
+                position: 'center',
                 icon: 'success',
                 title: '<?php echo $_SESSION['message'] ?>',
                 showConfirmButton: false,
@@ -424,13 +439,13 @@
                 e.preventDefault()
                 $id = $(this).attr('data-id')
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
+                    text: "Seguro que quiere inactivar al estudiante?",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#212529',
                     cancelButtonColor: '#dc3545',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonText: 'Inactivar',
+                    cancelButtonText: 'Cancelar'
                     }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.replace('inactivar.php?id=' + $id)

@@ -155,7 +155,7 @@
     </script>
 </head>
 <header>
-    <h1>Busqueda de estudiantes</h1>
+    <h1>Busqueda de estudiantes inactivos</h1>
     <img src="public/images/logo-liceo.png" alt="">
 </header>
 <body>
@@ -190,30 +190,7 @@
         <div class="document-student">
             <label for="">Ingrese el N° de documento del estudiante:</label>
             <br>
-            <input type="number" class="inpt" name="documento" id="documento" value="0" >
-        </div>
-        <div class="grados">
-            <label for="">Grado:</label>
-            <br>
-            <select class="grado" name="grado" id="grado">
-                <option selected disabled value="">Selecciona..</option>
-                <option value="sala-cuna">Salacuna</option>
-                <option value="caminadores">Caminadores</option>
-                <option value="parvulos">Parvulos</option>
-                <option value="prejardin">Prejardin</option>
-                <option value="transicion">Transicion</option>
-                <option value="primero">Primero</option>
-                <option value="segundo">Segundo</option>
-                <option value="tercero">Tercero</option>
-                <option value="cuarto">Cuarto</option>
-                <option value="quinto">Quinto</option>
-                <option value="sexto">Sexto</option>
-                <option value="septimo">Septimo</option>
-                <option value="octavo">Octavo</option>
-                <option value="noveno">Noveno</option>
-                <option value="decimo">Decimo</option>
-                <option value="once">Once</option>
-            </select>
+            <input type="number" class="inpt" name="documento" id="documento">
         </div>
         <button class="btn-search">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -224,11 +201,6 @@
     
 <?php if($_POST) :?>
     <?php
-    $grado = (isset($_POST['grado']) && strlen(trim($_POST['grado'])) >0 ? $_POST['grado'] : false);
-    if($grado)
-    {
-        $estudiantes = showStudentGrade($conx, $grado);
-    }
     
     $documento = (isset($_POST['documento']) ? $_POST['documento'] : false);
     if($documento)
@@ -244,11 +216,7 @@
     <?php if(isset($estudiantes) && $estudiantes && count($estudiantes) > 0) :?>
         <?php foreach($estudiantes as $estudiante):?>   
         <?php  
-        if( $documento == '0' ){
-
-        }else {
             $pagos = showPayments($conx, $estudiante['id']);
-        }
         ?>
         <?php if ($estudiante['estado'] == 'inactivo') :?> 
     <h2 class="title-results">INFORMACION DEL ESTUDIANTE</h2>
@@ -297,7 +265,6 @@
                             </div>
                         </td>
                     <?php endif?>
-                    <?php endif?>
                 </tr>
                 <?php if(isset($pagos)):?>
                     <?php if($pagos):?>
@@ -321,11 +288,12 @@
                                             <td><?= $pago['num_recibo_manual']?></td>
                                         </tr>
                                     </tbody>
-                        <?php endforeach?>
+                                    <?php endforeach?>
                                 </table>
-                        
+                                
                             </td>
                         </tr>
+                        <?php endif?>
                         <?php endif?>
                         <?php endif?>
                 <?php endforeach?>
@@ -394,7 +362,7 @@
         $(document).ready(function () {
             <?php if(isset($_SESSION['message'])): ?>
             Swal.fire({
-                position: 'top-end',
+                position: 'center',
                 icon: 'success',
                 title: '<?php echo $_SESSION['message'] ?>',
                 showConfirmButton: false,
@@ -407,13 +375,13 @@
                 e.preventDefault()
                 $id = $(this).attr('data-id')
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
+                    text: "Desea activar al estudiante??",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#212529',
                     cancelButtonColor: '#dc3545',
-                    confirmButtonText: 'Yes, delete it!'
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonText: 'Activar'    
                     }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.replace('activar.php?id=' + $id)
