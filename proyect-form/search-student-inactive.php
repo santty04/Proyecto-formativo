@@ -267,7 +267,7 @@
                 <?php if(isset($pagos)):?>
                     <?php if($pagos):?>
                         <tr class="pago_<?= $estudiante['id']; ?> fila_pagos">
-                            <td colspan="8">
+                            <td colspan="10">
                             <table class="table table-bordered align-middle">
                                 <thead class="table-secondary">
                                     <tr>
@@ -275,6 +275,7 @@
                                         <th>Mes</th>
                                         <th>Pension</th>
                                         <th>N° recibo manual</th>
+                                        <th>Observaciones</th>
                                     </tr>
                                 </thead>
                         <?php foreach($pagos as $pago):?>
@@ -284,6 +285,7 @@
                                             <td><?= $pago['mes']?></td>
                                             <td><?= $pago['pension']?></td>
                                             <td><?= $pago['num_recibo_manual']?></td>
+                                            <td><?= $pago['observaciones']?></td>
                                         </tr>
                                     </tbody>
                                     <?php endforeach?>
