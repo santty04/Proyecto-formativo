@@ -231,27 +231,27 @@
         <div class="name-student">
             <label for="">Nombre del estudiante:</label>
             <br>
-            <input type="text" class="inpt" id="nombre" name="nombre">
+            <input type="text" class="inpt" id="nombre" name="nombre" required>
         </div>
         <div class="apellido-student">
             <label for="">Apellido del estudiante:</label>
             <br>
-            <input type="text" class="inpt" id="apellidos" name="apellidos">
+            <input type="text" class="inpt" id="apellidos" name="apellidos" required>
         </div>
         <div class="document-student">
             <label for="">N° de documento del estudiante:</label>
             <br>
-            <input type="number" class="inpt" id="num_documento" name="num_documento">
+            <input type="number" class="inpt" id="num_documento" name="num_documento" required>
         </div>
         <div class="fecha-nacimiento">
             <label for="">Fecha de nacimiento:</label>
             <br>
-            <input type="date" class="inpt" id="fecha_nacimiento" name="fecha_nacimiento">
+            <input type="date" class="inpt" id="fecha_nacimiento" name="fecha_nacimiento" required>
         </div>
         <div class="genero">
             <label for="">Genero:</label>
             <br>
-            <select name="genero" id="genero">
+            <select name="genero" id="genero" required>
                 <option selected disabled value="">Selecciona..</option>
                 <option value="masculino">Masculino</option>
                 <option value="femenino">Femenino</option>
@@ -260,7 +260,7 @@
         <div class="jornada">
             <label for="">Jornada:</label>
             <br>
-            <select name="jornada" id="jornada">
+            <select name="jornada" id="jornada" required>
                 <option selected disabled value="">Selecciona..</option>
                 <option value="mañana">Mañana</option>
                 <option value="completa">Completa</option>
@@ -269,7 +269,7 @@
         <div class="grado">
             <label for="">Grado:</label>
             <br>
-            <select name="grado" id="grado">
+            <select name="grado" id="grado" required>
                 <option selected disabled value="">Selecciona..</option>
                 <option value="sala-cuna">Salacuna</option>
                 <option value="caminadores">Caminadores</option>
@@ -293,27 +293,27 @@
         <div class="name-acudiente">
             <label for="">Nombre del acudiente: </label>
             <br>
-            <input  type="text" class="inpt" id="nombreAcudiente" name="nombreAcudiente">
+            <input  type="text" class="inpt" id="nombreAcudiente" name="nombreAcudiente" required>
         </div>
         <div class="apellido-acudiente">
             <label for="">Apellido del acudiente: </label>
             <br>
-            <input  type="text" class="inpt" id="apellidosAcudiente" name="apellidosAcudiente">
+            <input  type="text" class="inpt" id="apellidosAcudiente" name="apellidosAcudiente" required>
         </div>
         <div class="n-acudiente">
             <label for="">N° documento del acudiente: </label>
             <br>
-            <input type="number" class="inpt" id="num_documentoAcudiente" name="num_documentoAcudiente">
+            <input type="number" class="inpt" id="num_documentoAcudiente" name="num_documentoAcudiente" required>
         </div>
         <div class="direccion">
             <label for="">Direccion: </label>
             <br>
-            <input type="text" class="inpt" id="direccionAcudiente" name="direccionAcudiente">
+            <input type="text" class="inpt" id="direccionAcudiente" name="direccionAcudiente" required>
         </div>
         <div class="telefono">
             <label for="">Telefono: </label>
             <br>
-            <input type="number" class="inpt" id="telefonoAcudiente" name="telefonoAcudiente">
+            <input type="number" class="inpt" id="telefonoAcudiente" name="telefonoAcudiente" required>
         </div>
         <button class="enviar-btn-search">
             Enviar

@@ -125,11 +125,13 @@
                     Vista Estudiante
                 </h1>
                 <hr>
-            <?php      
+            <?php
             if($_GET){
                 $id = $_GET['id'];
                 $estudiante = viewStudent($conx, $id);
             }
+            $pagos = showPayments($conx, $estudiante['id']);
+            var_dump($estudiante[0]['id']);
             ?>
                 <h2 class="title-results">INFORMACION DEL ESTUDIANTE:</h2>
                     <div class="container">
@@ -145,6 +147,7 @@
                                         <th>Genero</th>
                                         <th>Jornada</th>
                                         <th>Grado</th>
+                                        <th>Pagos</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -156,6 +159,9 @@
                                         <td><?php echo  ($estudiante [0] ['genero']);?></td>
                                         <td><?php echo  ($estudiante [0] ['jornada']);?></td>
                                         <td><?php echo  ($estudiante [0] ['grado']);?></td>
+                                        <?php if($pagos):?>
+                                            <td align="center"><?= ($pagos ? '<b id="btnPagos_'.$estudiante[0]['id'].'" class="pagos" title="Ver pagos" data-id="'.$estudiante[0]['id'].'">+</b>': ''); ?></td>
+                                        <?php endif?>
                                     </tr>
                                     
                                 </tbody>
