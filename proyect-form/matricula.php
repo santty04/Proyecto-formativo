@@ -341,9 +341,7 @@
             $num_documentoAcudiente       = $_POST['num_documentoAcudiente'];
             $direccionAcudiente           = $_POST['direccionAcudiente'];
             $telefonoAcudiente            = $_POST['telefonoAcudiente'];
-            // Upload Image
-            // $path  = "../public/images/";
-            // $image = $path.time().".".pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+            
             
             $id = addStudent($conx, $nombre, $apellidos, $num_documento, $fecha_nacimiento, $genero, $jornada, $grado);
             if ($id != -1) {
