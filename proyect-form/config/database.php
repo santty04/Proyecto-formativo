@@ -181,16 +181,16 @@
     }
 
     // Insert Payments
-    function addPayment($conx, $fecha, $mes, $pension, $num_recibo_manual, $num_documento) {
+    function addPayment($conx, $fecha, $num_documento, $mes, $pension, $num_recibo_manual, $observaciones) {
         try {
-            $sql = "INSERT INTO pagos(fecha, mes, pension, num_recibo_manual, estudiantes_id) 
-                    VALUES (:fecha, :mes, :pension, :num_recibo_manual, :id_estudiante)";
+            $sql = "INSERT INTO pagos(fecha, mes, pension, num_recibo_manual, observaciones, estudiantes_id) 
+                    VALUES (:fecha, :mes, :pension, :num_recibo_manual, :observaciones, :id_estudiante)";
             $stm = $conx->prepare($sql);
             $stm->bindparam(":fecha", $fecha);
             $stm->bindparam(":mes", $mes);
             $stm->bindparam(":pension", $pension);
             $stm->bindparam(":num_recibo_manual", $num_recibo_manual);
-            //$stm->bindparam(":observaciones", $observaciones);
+            $stm->bindparam(":observaciones", $observaciones);
             $stm->bindparam(":id_estudiante", $num_documento);
             if($stm->execute()) {
                 $id = $conx->lastInsertId();

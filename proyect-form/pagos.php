@@ -441,7 +441,7 @@ if(isset($_POST["documento"])) {
             $mes                     = $_POST['mes'];
             $pension                 = $_POST['pension'];
             $num_recibo_manual       = $_POST['num_recibo_manual'];
-            //$observaciones           = $_POST['observaciones'];
+            $observaciones           = $_POST['observaciones'];
 
             // Detalles
             $desayuno               = $_POST['desayuno'];
@@ -455,7 +455,7 @@ if(isset($_POST["documento"])) {
             // $path  = "../public/images/";
             // $image = $path.time().".".pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
             
-            $id = addPayment($conx, $fecha, $mes, $pension, $num_recibo_manual, $num_documento);
+            $id = addPayment($conx, $fecha, $num_documento, $mes, $pension, $num_recibo_manual, $observaciones );
             if ($id != -1) {
                 addDetail($conx, $id, $desayuno, $media_manana, $media_tarde, $almuerzo, $transporte, $derecho_grado, $matricula);
 

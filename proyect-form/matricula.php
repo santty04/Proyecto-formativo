@@ -196,7 +196,7 @@
     </style>
 </head>
 <header>
-    <h1>Matriculate</h1>
+    <h1>Matrícula</h1>
     <img src="public/images/logo-liceo.png" alt="">
 </header>
 <body>

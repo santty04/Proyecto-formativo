@@ -14,6 +14,29 @@
     <title>Document</title>
 </head>
 <body>
-    
+
+<?php $pagos = showPayments($conx, $estudiante['id']);?>
+
+
+<table class="table table-bordered align-middle">
+                                <thead class="table-secondary">
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Mes</th>
+                                        <th>Pension</th>
+                                        <th>N° recibo manual</th>
+                                    </tr>
+                                </thead>
+                        <?php foreach($pagos as $pago):?>
+                                    <tbody>
+                                        <tr>
+                                            <td><?= $pago['fecha']?></td>
+                                            <td><?= $pago['mes']?></td>
+                                            <td><?= $pago['pension']?></td>
+                                            <td><?= $pago['num_recibo_manual']?></td>
+                                        </tr>
+                                    </tbody>
+                        <?php endforeach?>
+                                </table>
 </body>
 </html>

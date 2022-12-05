@@ -202,7 +202,7 @@
         <div class="document-student">
             <label for="">Ingrese el N° de documento del estudiante:</label>
             <br>
-            <input type="number" class="inpt" name="documento" id="documento" value="0" >
+            <input type="number" class="inpt" name="documento" id="documento" >
         </div>
         <div class="grados">
             <label for="">Grado:</label>
@@ -246,11 +246,16 @@
         $estudiantes = showStudentGrade($conx, $grado);
     }
     
-    $documento = (isset($_POST['documento']) ? $_POST['documento'] : false);
+    $documento = (isset($_POST['documento']) && ctype_digit($_POST['documento']) ? $_POST['documento'] : false);
     if($documento)
     {
         $estudiantes = showStudent($conx, $documento);
     }
+
+    // $pdf = '<h1>Oeeee</h1>';
+    // $pdf .= $estudiantes[0]['nombre'];
+    // $mpdf->writeHtml($pdf);
+    // $mpdf->Output($estudiantes[0]['documento'].'.pdf')
     
     
     // echo "<pre>";
@@ -263,9 +268,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <?php foreach($estudiantes as $estudiante):?>   
-                        <?php if ($estudiante['estado'] == 'activo') :?>
-                    <h2 class="title-results">INFORMACION DEL ESTUDIANTE</h2>
+                <h2 class="title-results">INFORMACION DEL ESTUDIANTE</h2>
             <table class="table table-bordered align-middle">
                 <thead class="table-secondary">
                     <tr>
@@ -277,7 +280,7 @@
                         <th>Jornada</th>
                         <th>Grado</th>
                         <th>Estado</th>
-                        <?php if( $documento != 0) :?>
+                        <?php if($documento) :?>
                         <th>Pagos</th>
                         <?php else :?>
                             <th>Acciones</th>
@@ -285,10 +288,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                      <?php  
-                        if( $documento == '0' ){
-  
-                        }else {
+                    <?php foreach($estudiantes as $estudiante):?>   
+                        <?php if ($estudiante['estado'] == 'activo') :?>
+                      <?php
+                        $pagos = false;
+                        if($documento)
+                        {
                             $pagos = showPayments($conx, $estudiante['id']);
                         }
                         ?>
@@ -301,9 +306,9 @@
                     <td><?php echo  ($estudiante['jornada']);?></td>
                     <td><?php echo  ($estudiante['grado']);?></td>
                     <td><?php echo  ($estudiante['estado']);?></td>
-                    <?php if(isset($pagos)):?>
+                    <?php if($pagos):?>
                     <td align="center"><?= ($pagos ? '<b id="btnPagos_'.$estudiante['id'].'" class="pagos" title="Ver pagos" data-id="'.$estudiante['id'].'">+</b>': ''); ?></td>
-                    <?php elseif ($documento == 0) :?>
+                    <?php elseif (!$documento) :?>
                         <td>
                             <div class="dropdown">
                                 <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
@@ -322,7 +327,7 @@
                 <?php if(isset($pagos)):?>
                     <?php if($pagos):?>
                         <tr class="pago_<?= $estudiante['id']; ?> fila_pagos">
-                            <td colspan="8">
+                            <td colspan="9">
                             <table class="table table-bordered align-middle">
                                 <thead class="table-secondary">
                                     <tr>
@@ -330,6 +335,7 @@
                                         <th>Mes</th>
                                         <th>Pension</th>
                                         <th>N° recibo manual</th>
+                                        <th>Observaciones</th>
                                     </tr>
                                 </thead>
                         <?php foreach($pagos as $pago):?>
@@ -339,6 +345,7 @@
                                             <td><?= $pago['mes']?></td>
                                             <td><?= $pago['pension']?></td>
                                             <td><?= $pago['num_recibo_manual']?></td>
+                                            <td><?= $pago['observaciones']?></td>
                                         </tr>
                                     </tbody>
                         <?php endforeach?>
@@ -388,7 +395,7 @@
     </div>
     <?php endif ?>  
     <?php endif ?>  
-    <?php if($estudiante['estado'] == 'inactivo')
+    <?php if($documento && $estudiante['estado'] == 'inactivo')
         echo ("<script>
         Swal.fire({
             position: 'center',

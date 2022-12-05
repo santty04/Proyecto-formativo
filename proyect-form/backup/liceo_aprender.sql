@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 02, 2022 at 05:54 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 05-12-2022 a las 02:22:52
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `liceo_aprender`
+-- Base de datos: `liceo_aprender`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acudiente`
+-- Estructura de tabla para la tabla `acudiente`
 --
 
 CREATE TABLE `acudiente` (
@@ -38,7 +38,7 @@ CREATE TABLE `acudiente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `acudiente`
+-- Volcado de datos para la tabla `acudiente`
 --
 
 INSERT INTO `acudiente` (`id`, `nombre`, `apellidos`, `num_documento`, `direccion`, `telefono`, `id_estudiante`) VALUES
@@ -49,7 +49,7 @@ INSERT INTO `acudiente` (`id`, `nombre`, `apellidos`, `num_documento`, `direccio
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detalles`
+-- Estructura de tabla para la tabla `detalles`
 --
 
 CREATE TABLE `detalles` (
@@ -67,16 +67,31 @@ CREATE TABLE `detalles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `detalles`
+-- Volcado de datos para la tabla `detalles`
 --
 
 INSERT INTO `detalles` (`id`, `pago_id`, `valor`, `mes`, `desayuno`, `media_manana`, `media_tarde`, `almuerzo`, `transporte`, `derecho_grado`, `matricula`) VALUES
-(1, 3, NULL, NULL, 100, 100, 100, 100, 100, 100, 100);
+(1, 3, NULL, NULL, 100, 100, 100, 100, 100, 100, 100),
+(2, 4, NULL, NULL, 0, 0, 0, 0, 0, 0, 0),
+(3, 5, NULL, NULL, 0, 0, 0, 0, 0, 0, 0),
+(4, 6, NULL, NULL, 0, 0, 0, 0, 0, 0, 0),
+(5, 7, NULL, NULL, 0, 0, 0, 0, 0, 0, 0),
+(6, 8, NULL, NULL, 0, 0, 0, 0, 0, 0, 0),
+(7, 9, NULL, NULL, 0, 0, 0, 0, 0, 0, 0),
+(8, 10, NULL, NULL, 0, 0, 0, 0, 0, 0, 0),
+(9, 11, NULL, NULL, 0, 0, 0, 0, 0, 0, 0),
+(10, 12, NULL, NULL, 0, 0, 0, 0, 0, 0, 0),
+(11, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0),
+(12, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0),
+(13, 13, NULL, NULL, 0, 0, 0, 0, 0, 0, 0),
+(14, 14, NULL, NULL, 0, 0, 0, 0, 0, 0, 0),
+(15, 15, NULL, NULL, 0, 0, 0, 0, 0, 0, 0),
+(16, 16, NULL, NULL, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `estudiantes`
+-- Estructura de tabla para la tabla `estudiantes`
 --
 
 CREATE TABLE `estudiantes` (
@@ -92,18 +107,18 @@ CREATE TABLE `estudiantes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `estudiantes`
+-- Volcado de datos para la tabla `estudiantes`
 --
 
 INSERT INTO `estudiantes` (`id`, `nombre`, `apellidos`, `num_documento`, `fecha_nacimiento`, `genero`, `jornada`, `grado`, `estado`) VALUES
 (1, 'Franciso', 'Castrillon', 465, '2022-11-02', 'masculino', 'tarde', 'once', 'activo'),
-(2, 'Brajan', 'sanches', NULL, '2022-11-28', 'masculino', 'completa', 'tercero', 'activo'),
-(3, 'Cristian', 'Perez', NULL, '2005-11-22', 'masculino', 'mañana', 'once', 'inactivo');
+(2, 'Brajan', 'sanches', 45, '2022-11-28', 'masculino', 'completa', 'once', 'activo'),
+(3, 'Cristian', 'Perez', 44, '2005-11-22', 'masculino', 'mañana', 'once', 'inactivo');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pagos`
+-- Estructura de tabla para la tabla `pagos`
 --
 
 CREATE TABLE `pagos` (
@@ -119,18 +134,31 @@ CREATE TABLE `pagos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `pagos`
+-- Volcado de datos para la tabla `pagos`
 --
 
 INSERT INTO `pagos` (`factura_id`, `fecha`, `mes`, `pension`, `num_recibo_manual`, `pdf`, `observaciones`, `estudiantes_id`, `id_tipo_pago`) VALUES
 (1, '2022-11-27', 'enero', 100, 1, '', '', 2, NULL),
 (2, '2022-11-28', 'enero', 100, 2, '', '', 2, NULL),
-(3, '2022-11-29', 'enero', 100, 2, '', '', 2, NULL);
+(3, '2022-11-29', 'enero', 100, 2, '', '', 2, NULL),
+(4, '2022-12-04', 'mayo', 1000, 0, '', '', 1, NULL),
+(5, '2022-12-04', 'mayo', 1000, 0, '', '', 1, NULL),
+(6, '2022-12-04', 'diciembre', 100, 0, '', '', 1, NULL),
+(7, '2022-12-04', 'diciembre', 100, 0, '', '', 1, NULL),
+(8, '2022-12-04', 'diciembre', 100, 0, '', '', 1, NULL),
+(9, '2022-12-04', 'diciembre', 100, 0, '', '', 1, NULL),
+(10, '2022-12-04', 'agosto', 0, 0, '', '', 1, NULL),
+(11, '2022-12-04', 'agosto', 0, 0, '', '', 1, NULL),
+(12, '2022-12-04', 'abril', 100, 0, '', '', 1, NULL),
+(13, '2022-12-04', 'mayo', 0, 0, '', '', 1, NULL),
+(14, '2022-12-04', 'julio', 900, 0, '', '', 1, NULL),
+(15, '2022-12-04', 'junio', 6564, 0, '', '', 1, NULL),
+(16, '2022-12-05', 'junio', 845, 0, '', 'dnlsdn', 1, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipo_pago`
+-- Estructura de tabla para la tabla `tipo_pago`
 --
 
 CREATE TABLE `tipo_pago` (
@@ -141,7 +169,7 @@ CREATE TABLE `tipo_pago` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -154,7 +182,7 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `name`, `email`, `photo`, `password`, `role`) VALUES
@@ -162,11 +190,11 @@ INSERT INTO `usuarios` (`id`, `name`, `email`, `photo`, `password`, `role`) VALU
 (7, 'Fernando Gaviria', 'fernando.g@gmail.com', 'public/images/1667574388.', '827ccb0eea8a706c4c34a16891f84e7b', 'Rector');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `acudiente`
+-- Indices de la tabla `acudiente`
 --
 ALTER TABLE `acudiente`
   ADD PRIMARY KEY (`id`),
@@ -174,21 +202,21 @@ ALTER TABLE `acudiente`
   ADD KEY `id_estudiante` (`id_estudiante`);
 
 --
--- Indexes for table `detalles`
+-- Indices de la tabla `detalles`
 --
 ALTER TABLE `detalles`
   ADD PRIMARY KEY (`id`),
   ADD KEY `pago_id` (`pago_id`);
 
 --
--- Indexes for table `estudiantes`
+-- Indices de la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `num_documento` (`num_documento`);
 
 --
--- Indexes for table `pagos`
+-- Indices de la tabla `pagos`
 --
 ALTER TABLE `pagos`
   ADD PRIMARY KEY (`factura_id`),
@@ -196,83 +224,83 @@ ALTER TABLE `pagos`
   ADD KEY `id_tipo_pago` (`id_tipo_pago`);
 
 --
--- Indexes for table `tipo_pago`
+-- Indices de la tabla `tipo_pago`
 --
 ALTER TABLE `tipo_pago`
   ADD PRIMARY KEY (`id`),
   ADD KEY `detalles_id` (`detalles_id`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `acudiente`
+-- AUTO_INCREMENT de la tabla `acudiente`
 --
 ALTER TABLE `acudiente`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `detalles`
+-- AUTO_INCREMENT de la tabla `detalles`
 --
 ALTER TABLE `detalles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `estudiantes`
+-- AUTO_INCREMENT de la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `pagos`
+-- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `factura_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `factura_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `tipo_pago`
+-- AUTO_INCREMENT de la tabla `tipo_pago`
 --
 ALTER TABLE `tipo_pago`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `acudiente`
+-- Filtros para la tabla `acudiente`
 --
 ALTER TABLE `acudiente`
   ADD CONSTRAINT `acudiente_ibfk_1` FOREIGN KEY (`id_estudiante`) REFERENCES `estudiantes` (`id`);
 
 --
--- Constraints for table `detalles`
+-- Filtros para la tabla `detalles`
 --
 ALTER TABLE `detalles`
   ADD CONSTRAINT `detalles_ibfk_1` FOREIGN KEY (`pago_id`) REFERENCES `pagos` (`factura_id`);
 
 --
--- Constraints for table `pagos`
+-- Filtros para la tabla `pagos`
 --
 ALTER TABLE `pagos`
   ADD CONSTRAINT `pagos_ibfk_1` FOREIGN KEY (`estudiantes_id`) REFERENCES `estudiantes` (`id`),
   ADD CONSTRAINT `pagos_ibfk_2` FOREIGN KEY (`id_tipo_pago`) REFERENCES `tipo_pago` (`id`);
 
 --
--- Constraints for table `tipo_pago`
+-- Filtros para la tabla `tipo_pago`
 --
 ALTER TABLE `tipo_pago`
   ADD CONSTRAINT `tipo_pago_ibfk_1` FOREIGN KEY (`detalles_id`) REFERENCES `pagos` (`factura_id`);
