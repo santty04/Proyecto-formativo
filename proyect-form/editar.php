@@ -16,7 +16,7 @@
     <style>
 
         /* Header */
-                header img {
+            header img {
             position: absolute;
             width: 241px;
             height: 262px;
@@ -76,6 +76,21 @@
         div.nav {
             border:none;
         }
+
+        .h1-edit {
+            width: 1000px;
+            position: relative;
+            text-align: center;
+            left:-450px;
+            padding-top: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #039041;
+            color: #373232;
+        }
+
+        .btn-env {
+            background-color:#039041;
+        }
     </style>
 <header>
     <img src="public/images/logo-liceo.png" alt="">
@@ -109,7 +124,7 @@
     </div>
         <section class="row">
             <div class="col-md-4 offset-md-5 my-3 mb-1">
-                <h1>
+                <h1 class="h1-edit">
                 <i class="fa fa-pen"></i>
                     Editar
                 </h1>
@@ -117,7 +132,7 @@
             <div class="row">
             <div class="col-md-4 offset-md-1 my-5">
             
-                <hr>
+                
                 <h1 class="text-center">
                     Estudiante
                 </h1>
@@ -180,7 +195,7 @@
                 <?php endforeach ?>
             </div>
             <div class="col-md-4 offset-md-2 estudiante">
-                <hr>
+                
                 <h1 class="text-center">
                     Acudiente
                 </h1>
@@ -244,7 +259,7 @@
             </div>
         </div>
         <div class="mb-5  col-md-6 offset-md-3">
-            <button type="submit" class="btn btn-success btn-lg form-control">
+            <button type="submit" class="btn btn-env btn-lg form-control">
                 <i class="fa fa-save"></i>
                 Guardar
             </button>

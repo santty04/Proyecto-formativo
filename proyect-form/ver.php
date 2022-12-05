@@ -84,6 +84,17 @@
         .continer {
             margin-top: 200px;
         }
+
+        .h1-vista {
+            width: 1000px;
+            text-align: center;
+            margin-left: 350px;
+            padding-top: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #039041;
+            color: #373232;
+        }
+
     </style>
 </head>
 <header>
@@ -116,15 +127,14 @@
               
         </a>
     </div>
+    <h1 class="h1-vista text-center">
+        <i class="fa fa-search"></i>
+        Vista Estudiante
+    </h1>
     <main class="container continer">
         <section class="row">
-            <div class="col-md-8 offset-md-1  my-5 ">
+            <div class="col-md-8 offset-md-1  ">
 
-                <h1 class="text-center">
-                    <i class="fa fa-search"></i>
-                    Vista Estudiante
-                </h1>
-                <hr>
             <?php
             if($_GET){
                 $id = $_GET['id'];
@@ -133,11 +143,11 @@
             $pagos = showPayments($conx, $estudiante['id']);
             var_dump($estudiante[0]['id']);
             ?>
-                <h2 class="title-results">INFORMACION DEL ESTUDIANTE:</h2>
+                <h2 class="title-results my-2">INFORMACION DEL ESTUDIANTE:</h2>
                     <div class="container">
                         <div class="row">
                             <div class="col">
-                            <table class="table table-bordered align-middle">
+                            <table class="table table-bordered align-middl">
                                 <thead class="table-secondary">
                                     <tr>
                                         <th>Nombre</th>
@@ -169,7 +179,7 @@
                             </div>
                         </div>
                     </div>
-                    <h2 class="title-results">INFORMACION DEL ACUDIENTE:</h2>
+                    <h2 class="title-results mt-5">INFORMACION DEL ACUDIENTE:</h2>
                     <div class="container">
                         <div class="row">
                             <div class="col">

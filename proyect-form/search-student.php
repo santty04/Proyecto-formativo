@@ -202,7 +202,7 @@
         <div class="document-student">
             <label for="">Ingrese el N° de documento del estudiante:</label>
             <br>
-            <input type="number" class="inpt" name="documento" id="documento" >
+            <input type="number" class="inpt" name="documento" id="documento" value="<?= isset($_POST["documento"]) ? $_POST["documento"] : ''; ?>" >
         </div>
         <div class="grados">
             <label for="">Grado:</label>
@@ -269,7 +269,7 @@
             <div class="row">
                 <div class="col">
                 <h2 class="title-results">INFORMACION DEL ESTUDIANTE</h2>
-            <table class="table table-bordered align-middle">
+            <table class="table table-bordered table table-striped align-middle">
                 <thead class="table-secondary">
                     <tr>
                         <th>Nombre</th>
@@ -328,7 +328,7 @@
                     <?php if($pagos):?>
                         <tr class="pago_<?= $estudiante['id']; ?> fila_pagos">
                             <td colspan="9">
-                            <table class="table table-bordered align-middle">
+                            <table class="table table-bordered align-middle table table-striped">
                                 <thead class="table-secondary">
                                     <tr>
                                         <th>Fecha</th>

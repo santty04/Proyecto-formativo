@@ -257,7 +257,7 @@
             text-align: center;
             border:2px solid #373232;
             border-radius: 10px;
-            width: 300px;
+            width: 450px;
         }
     </style>
 </head>
@@ -332,7 +332,7 @@ if(isset($_POST["documento"])) {
             <div class="mes">
                 <label for="">Mes: </label>
                 <br>
-                <select name="mes" id="mes" required>
+                <select name="mes" id="mes" required >
                     <option selected disabled value="">Selecciona</option>
                     <option value="enero">Enero</option>
                     <option value="febrero">Febrero</option>
