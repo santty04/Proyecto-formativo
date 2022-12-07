@@ -18,20 +18,16 @@
             font-family: Arial, Helvetica, sans-serif;
         }
         /* header */
-        header h1 {
-            width: 1000px;
-            text-align: center;
-            margin: 40px auto;
-            margin-left: 300px;
-            border-bottom: 2px solid #373232;
-            color: #373232;
+         h1 {
+           
         }   
+
         header img {
             position: absolute;
             width: 241px;
             height: 262px;
-            left: 1500px;
-            top: 80px;
+            left: 1700px;
+            top: 140px;
         }
         /* nav */
         div.nav {
@@ -86,12 +82,12 @@
         }
 
         .h1-vista {
-            width: 1000px;
+            width: 1300px;
             text-align: center;
-            margin-left: 350px;
-            padding-top: 40px;
-            padding-bottom: 30px;
-            border-bottom: 3px solid #039041;
+            margin-top: 40px;
+            padding: 10px;
+            margin-left: 300px;
+            border-bottom: 4px solid #039041;
             color: #373232;
         }
 
@@ -128,7 +124,6 @@
         </a>
     </div>
     <h1 class="h1-vista text-center">
-        <i class="fa fa-search"></i>
         Vista Estudiante
     </h1>
     <main class="container continer">
@@ -140,10 +135,8 @@
                 $id = $_GET['id'];
                 $estudiante = viewStudent($conx, $id);
             }
-            $pagos = showPayments($conx, $estudiante['id']);
-            var_dump($estudiante[0]['id']);
             ?>
-                <h2 class="title-results my-2">INFORMACION DEL ESTUDIANTE:</h2>
+                <h2 class="title-results my-1">INFORMACION DEL ESTUDIANTE:</h2>
                     <div class="container">
                         <div class="row">
                             <div class="col">
@@ -157,7 +150,6 @@
                                         <th>Genero</th>
                                         <th>Jornada</th>
                                         <th>Grado</th>
-                                        <th>Pagos</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -169,9 +161,6 @@
                                         <td><?php echo  ($estudiante [0] ['genero']);?></td>
                                         <td><?php echo  ($estudiante [0] ['jornada']);?></td>
                                         <td><?php echo  ($estudiante [0] ['grado']);?></td>
-                                        <?php if($pagos):?>
-                                            <td align="center"><?= ($pagos ? '<b id="btnPagos_'.$estudiante[0]['id'].'" class="pagos" title="Ver pagos" data-id="'.$estudiante[0]['id'].'">+</b>': ''); ?></td>
-                                        <?php endif?>
                                     </tr>
                                     
                                 </tbody>

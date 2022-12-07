@@ -19,11 +19,7 @@
 </head>
     <header>
         <h2>Base de datos | Liceo Aprender</h2>
-        <button class="close"> 
-            <a class="closeSesion "href="<?php echo $base_url . '/' ?>close.php">
-                Close Session
-            </a>
-        </button>
+        <a class="close" href="<?php echo $base_url . '/' ?>close.php">Cerrar sesion</a>
 
         
         
@@ -33,7 +29,7 @@
                 </a> -->
         <div class="banner">
             <img class="users" src="images/users.svg" alt="">
-            <h1>Bienvenido al panel administrativo</h1>
+            <h1>Bienvenido <br> al panel <br> administrativo</h1>
             <img class="logo" src="images/marco-logo.png" alt="">
         </div>
     </header>

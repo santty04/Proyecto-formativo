@@ -15,23 +15,32 @@
     <title>Busqueda de estudiantes</title>
     <style>
         * {
+            overflow-x: hidden;
             font-family: Arial, Helvetica, sans-serif;
         }
         /* header */
         header h1 {
-            width: 1000px;
+            width: 1300px;
             text-align: center;
-            margin: 40px auto;
+            margin-top: 40px;
+            padding: 10px;
             margin-left: 300px;
-            border-bottom: 2px solid #373232;
+            border-bottom: 4px solid #039041;
             color: #373232;
         }   
         header img {
             position: absolute;
             width: 241px;
             height: 262px;
-            left: 1300px;
+            left: 1700px;
             top: 160px;
+        }
+
+        .inputs  {
+            position: relative;
+            top: -30px;
+            left: 50px;
+
         }
         /* nav */
         div.nav {
@@ -70,7 +79,9 @@
         }
         .inputs .inpt {
             width: 400px;
-            height: 30px;
+            height: 40px;
+            position: relative;
+            left: 30px;
             margin: 10px 20px 20px 0px;
             border: 2px solid #373232;
             border-radius: 5px;
@@ -79,10 +90,12 @@
         .btn-search {
             background-color: #039041;
             border: none;
+            position: relative;
             color: #fff;
             font-size: 16px;
             width: 100px;
-            height: 30px;
+            height: 40px;
+            left: 30px;
             cursor: pointer;
             border-radius: 10px;
         }
@@ -101,16 +114,21 @@
             text-align: center;
             margin-bottom: 20px;
         }
+        label {
+            position: relative;
+            left: 30px;
+            
+        }
        
     </style>
 </head>
 <header>
-    <h1>Busqueda de estudiantes</h1>
+    <h1><b>Busqueda de estudiantes</b></h1>
     <img src="public/images/logo-liceo.png" alt="">
 </header>
 <body>
     <div class="nav">
-        <a href="dashboard-admin.php">
+        <a href="dashboard-rector.php">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 exit">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -132,7 +150,7 @@
             <input type="number" class="inpt" name="documento" id="documento">
         </div>
         <button class="btn-search">
-            <i class="fa-solid fa-magnifying-glass"></i>
+
             Buscar
         </button>
     </div>

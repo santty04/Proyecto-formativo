@@ -1,5 +1,5 @@
 * {
-    overflow: hidden;
+    overflow-x: hidden;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -8,13 +8,13 @@
     color: #000;
     font-style: none;
     text-decoration: none;
-    left: 1600px;
+    left: 1760px;
     top: -45px;
 
 }
 h2 {
     color: #373232;
-    margin-left: 50px;
+    margin-left: 120px;
     width: 500px;
 }
 /* banner */
@@ -24,7 +24,8 @@ h2 {
     width: 1782px;
     height: 400px;
     border-radius:20px ;
-    margin-left: 50px;
+    margin-left: 120px;
+    overflow-y: hidden;
 }
 .banner img.users {
     position: relative;
@@ -53,10 +54,11 @@ h2 {
 .grid-container {
     display: grid;
     grid-template-columns:350px;
-    margin-top: 420px;
+    margin-top: 450px;
     justify-content: center;
     align-items: center;       
-    gap: 50px;    
+    gap: 50px;  
+    margin-bottom: 50px;  
 }
 /* BOX */
 .box {
@@ -102,46 +104,9 @@ h2 {
 }
 
 /*BTN CLOSE SESION*/
-a.closeSesion {
+a.close {
     text-decoration: none;
-    color: #212121;
+    font-size: 22px;
+    text-align: center;
+    color: red;
 }
-
-button.close {
-    padding: 15px 25px;
-    border: unset;
-    border-radius: 15px;
-    color: #212121;
-    z-index: 1;
-    background: #e8e8e8;
-    position: relative;
-    font-weight: 1000;
-    font-size: 17px;
-    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-    transition: all 250ms;
-    overflow: hidden;
-   }
-   
-   button.close::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 0;
-    border-radius: 15px;
-    background-color: #212121;
-    z-index: -1;
-    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-    transition: all 250ms
-   }
-   
-   button.close:hover a {
-    color: #e8e8e8;
-   }
-   
-   button.close:hover::before {
-    width: 100%;
-   }

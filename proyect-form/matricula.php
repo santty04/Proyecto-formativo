@@ -17,16 +17,17 @@
     <title>Matricula de estudiantes</title>
     <style>
         * {
+            overflow-x: hidden;
             font-family: Arial, Helvetica, sans-serif;
         }
         /* header */
         header h1 {
-            width: 1000px;
+            width: 1300px;
             text-align: center;
+            margin-top: 40px;
+            padding: 10px;
             margin-left: 300px;
-            padding-top: 40px;
-            padding-bottom: 30px;
-            border-bottom: 3px solid #039041;
+            border-bottom: 4px solid #039041;
             color: #373232;
         }   
 
@@ -34,8 +35,8 @@
             position: absolute;
             width: 241px;
             height: 262px;
-            left: 1500px;
-            top: 160px;
+            left: 1700px;
+            top: 140px;
         }
 
 
@@ -90,87 +91,98 @@
         /* inputs */
 
         div.inputs{
-            margin: 0px;
-            margin-left: 360px;
+            margin-top: 30px;
+            margin-left: 400px;
             color: #373232;
         }
         .inputs .inpt {
             width: 370px;
-            height: 30px;
+            height: 40px;
             margin: 10px 20px 20px 0px;
             border: 2px solid #373232;
             border-radius: 5px;
         }
-        
+         .name-student {
+            position: relative;
+            left: 60px;
+         }
 
         .document-student {
             position: relative;
-            left: 480px;
-            bottom: 90px;
+            left: 550px;
+            bottom: 100px;
 
         }
 
+        .apellido-student {
+            position: relative;
+            left: 60px;
+        }
         .fecha-nacimiento {
             position: relative;
-            bottom: 275px;
-            left: 480px;
+            bottom: 305px;
+            left: 550px;
         }
 
         .genero {
             position: relative;
-            bottom: 180px;
+            bottom: 200px;
+            left: 60px;
         }
 
         .jornada {
             position: relative;
-            bottom: 238px;
-            left: 300px;
+            bottom: 270px;
+            left: 360px;
         }
 
         .grado {
             position: relative;
-            bottom: 295px;
-            left: 598px;
+            bottom: 340px;
+            left: 660px;
         }
 
         h1.informacion-acudiente {
             position: relative;
-            bottom: 230px;
+            bottom: 300px;
         }
 
         select {
             border-radius: 5px;
             width: 260px;
-            height: 27px;
+            height: 40px;
             border: solid 2px #373232;
             
         }
         
         .name-acudiente {
             position: relative;
-            bottom: 240px;
+            bottom: 270px;
+            left: 60px;
         }
        
         .apellido-acudiente {
             position: relative;
-            bottom: 240px;
+            bottom: 270px;
+            left: 60px;
         }
 
         .n-acudiente {
             position: relative;
-            bottom: 423px;
-            left: 480px;
+            bottom: 470px;
+            left: 550px;
         }
 
         .direccion {
             position: relative;
-            bottom: 425px;
-            left: 480px;
+            bottom: 470px;
+            left: 550px;
         }
 
         .telefono {
             position: relative;
-            bottom: 420px;
+            bottom: 470px;
+            left: 60px;
         }
 
         .enviar-btn-search {
@@ -181,10 +193,11 @@
             font-size: 16px;
             width: 120px;
             height: 40px;
+            left: 70px;
             cursor: pointer;
             border-radius: 10px;
             position: relative;
-            bottom: 400px;
+            bottom: 450px;
             transition: all 0.5s;
         }
         .enviar-btn-search {
@@ -196,7 +209,7 @@
     </style>
 </head>
 <header>
-    <h1>Matrícula</h1>
+    <h1><b>Matrícula</b></h1>
     <img src="public/images/logo-liceo.png" alt="">
 </header>
 <body>

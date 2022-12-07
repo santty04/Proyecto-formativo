@@ -20,19 +20,20 @@
         }
         /* header */
         header h1 {
-            width: 1000px;
+            width: 1300px;
             text-align: center;
-            margin: 40px auto;
+            margin-top: 40px;
+            padding: 10px;
             margin-left: 300px;
-            border-bottom: 2px solid #373232;
+            border-bottom: 4px solid #039041;
             color: #373232;
         }   
         header img {
             position: absolute;
             width: 241px;
             height: 262px;
-            left: 1300px;
-            top: 160px;
+            left: 1700px;
+            top: 140px;
         }
         /* nav */
         div.nav {
@@ -84,12 +85,25 @@
 
         div.inputs{
             margin: 70px;
-            margin-left: 300px;
+            margin-left: 450px;
             color: #373232;
         }
+        .inputs label {
+            position: relative;
+            left: 40px;
+        }
+
+        .inputs h1 {
+            position: relative;
+            top: -40px;
+            left: -40px;
+        }
+
         .inputs .inpt {
             width: 400px;
-            height: 30px;
+            height: 40px;
+            position: relative;
+            left: 40px;
             margin: 10px 20px 20px 0px;
             border: 2px solid #373232;
             border-radius: 5px;
@@ -100,11 +114,15 @@
             border: none;
             color: #fff;
             font-size: 16px;
+            position: relative;
+            left: 40px;
             width: 100px;
-            height: 30px;
+            height: 40px;
             cursor: pointer;
             border-radius: 10px;
         }
+
+        
 
         /* results */
         div.results{
@@ -126,15 +144,17 @@
         .grado {
             position: relative;
             width: 400px;
-            height: 30px;
+            height: 40px;
+            left: 40px;
             margin: 10px 20px 20px 0px;
             border: 2px solid #373232;
             border-radius: 5px;
         }
         .grados {
             position: absolute;
-            left: 800px;
-            top: 215px;
+            left: 950px;
+            top: 235px;
+            
         }
 
         .pagos{
@@ -145,12 +165,16 @@
             display: none;
         }
 
+        .container {
+            margin-bottom: 40px;
+        }
+
         .inactivos {
             text-decoration:none;
             color:#272727;
             border-bottom:2px solid #272727;
             font-size: 20px;
-            margin-left: 570px;
+            margin-left: 615px;
         }
         .inactivos:hover {
             color: rgb(255, 0, 0);
@@ -167,7 +191,7 @@
     </script>
 </head>
 <header>
-    <h1>Busqueda de estudiantes</h1>
+    <h1><b>Busqueda de Estudiantes</b></h1>
     <img src="public/images/logo-liceo.png" alt="">
 </header>
 <body>
@@ -198,7 +222,7 @@
     </div>
     <form action="" method="POST">
     <div class="inputs">
-        <h1>Ingrese los datos del estudiante </h1>
+        <h1>Ingrese los datos del estudiante:</h1>
         <div class="document-student">
             <label for="">Ingrese el N° de documento del estudiante:</label>
             <br>
@@ -228,7 +252,6 @@
             </select>
         </div>
         <button class="btn-search">
-            <i class="fa-solid fa-magnifying-glass"></i>
             Buscar
         </button>
         <a href="search-student-inactive.php"  class="inactivos">

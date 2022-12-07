@@ -16,12 +16,12 @@
     <style>
 
         /* Header */
-            header img {
+        header img {
             position: absolute;
             width: 241px;
             height: 262px;
-            left: 1500px;
-            top: 80px;
+            left: 1700px;
+            top: 140px;
         }
         .estudiante{
             margin-top: 50px;
@@ -78,13 +78,13 @@
         }
 
         .h1-edit {
-            width: 1000px;
-            position: relative;
+            width: 1300px;
             text-align: center;
-            left:-450px;
-            padding-top: 40px;
-            padding-bottom: 30px;
-            border-bottom: 3px solid #039041;
+            margin-top: 40px;
+            padding: 10px;
+            position: relative;
+            left: -600px;
+            border-bottom: 4px solid #039041;
             color: #373232;
         }
 
@@ -125,7 +125,7 @@
         <section class="row">
             <div class="col-md-4 offset-md-5 my-3 mb-1">
                 <h1 class="h1-edit">
-                <i class="fa fa-pen"></i>
+                
                     Editar
                 </h1>
             </div>

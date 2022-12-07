@@ -11,17 +11,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home-Rector</title>
     <link rel="stylesheet" href="public/css/panel-rector.css">
+    <link rel="stylesheet" href="public/css/fontawesome.min.css">
 </head>
     <header>
         <h2>Base de datos | Liceo Aprender</h2>
-        <button class="close"> 
-            <a class="closeSesion "href="<?php echo $base_url . '/' ?>close.php">
-                Close Session
-            </a>
-        </button>
+        <a class="close" href="<?php echo $base_url . '/' ?>close.php">Cerrar sesion</a>
         <div class="banner">
             <img class="users" src="images/users.svg" alt="">
-            <h1>Bienvenido al panel del rector</h1>
+            <h1>Bienvenido <br> al panel <br> administrativo</h1>
             <img class="logo" src="images/marco-logo.png" alt="">
         </div>
     </header>

@@ -20,19 +20,20 @@
         }
         /* header */
         header h1 {
-            width: 1000px;
+            width: 1300px;
             text-align: center;
-            margin: 40px auto;
+            margin-top: 40px;
+            padding: 10px;
             margin-left: 300px;
-            border-bottom: 2px solid #373232;
+            border-bottom: 4px solid #039041;
             color: #373232;
         }   
         header img {
             position: absolute;
             width: 241px;
             height: 262px;
-            left: 1300px;
-            top: 160px;
+            left: 1700px;
+            top: 140px;
         }
         /* nav */
         div.nav {
@@ -83,16 +84,21 @@
         /* inputs */
 
         div.inputs{
-            margin: 70px;
-            margin-left: 300px;
+            margin: 50px;
+            margin-left: 500px;
             color: #373232;
         }
         .inputs .inpt {
             width: 400px;
-            height: 30px;
+            height: 40px;
             margin: 10px 20px 20px 0px;
             border: 2px solid #373232;
             border-radius: 5px;
+        }
+
+        .inputs h1 {
+            position: relative;
+            left: -70px;
         }
         /*button search*/
         .btn-search {
@@ -101,7 +107,7 @@
             color: #fff;
             font-size: 16px;
             width: 100px;
-            height: 30px;
+            height: 40px;
             cursor: pointer;
             border-radius: 10px;
         }
@@ -155,7 +161,7 @@
     </script>
 </head>
 <header>
-    <h1>Busqueda de estudiantes inactivos</h1>
+    <h1><b>Busqueda de Estudiantes Inactivos</b></h1>
     <img src="public/images/logo-liceo.png" alt="">
 </header>
 <body>
@@ -184,14 +190,14 @@
     </div>
     <form action="" method="POST">
     <div class="inputs">
-        <h1>Ingrese los datos del estudiante </h1>
+        <h1>Ingrese los datos del estudiante: </h1>
         <div class="document-student">
             <label for="">Ingrese el N° de documento del estudiante:</label>
             <br>
             <input type="number" class="inpt" name="documento" id="documento">
         </div>
         <button class="btn-search">
-            <i class="fa-solid fa-magnifying-glass"></i>
+            
             Buscar
         </button>
     </div>

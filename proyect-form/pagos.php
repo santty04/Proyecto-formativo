@@ -16,17 +16,17 @@
     <title>Pagos</title>
     <style>
         * {
-            overflow: hidden;
+            overflow-x: hidden;
             font-family: Arial, Helvetica, sans-serif;
         }
         /* header */
         header h1 {
-            width: 1000px;
+            width: 1300px;
             text-align: center;
+            margin-top: 40px;
+            padding: 10px;
             margin-left: 300px;
-            padding-top: 40px;
-            padding-bottom: 30px;
-            border-bottom: 3px solid #039041;
+            border-bottom: 4px solid #039041;
             color: #373232;
         }   
 
@@ -34,8 +34,8 @@
             position: absolute;
             width: 241px;
             height: 262px;
-            left: 1500px;
-            top: 160px;
+            left: 1700px;
+            top: 140px;
         }
 
 
@@ -88,13 +88,13 @@
         /* inputs */
 
         div.inputs{
-            margin: 0px;
+            margin-top: 15px;
             margin-left: 360px;
             color: #373232;
         }
         .inputs .inpt {
             width: 370px;
-            height: 30px;
+            height: 40px;
             margin: 10px 20px 20px 0px;
             border: 2px solid #373232;
             border-radius: 5px;
@@ -106,20 +106,27 @@
             position: relative;
             color: #fff;
             font-size: 16px;
+            left: 60px;
             width: 120px;
             height: 40px;
             cursor: pointer;
             border-radius: 10px;
         }
 
+        .document-student {
+            position: relative;
+            left: 60px;
+        }
         .p-p {
             position: relative;
             bottom: 5px;
+            margin-top: 15px;
         }
 
         .mes {
             position: relative;
             bottom: -3px;
+            left: 60px;
         }
 
        
@@ -127,7 +134,7 @@
         select {
             border-radius: 5px;
             width: 260px;
-            height: 27px;
+            height: 40px;
             border: solid 2px #373232;
 
         }
@@ -138,8 +145,8 @@
 
         .pension {
             position: relative;
-            bottom: 60px;
-            left: 300px;
+            bottom: 80px;
+            left: 360px;
             
         }
 
@@ -149,8 +156,8 @@
 
         .recibo {
             position: relative;
-            left:600px;
-            bottom: 150px; 
+            left: 660px;
+            bottom: 180px; 
         }
 
         .recibo input.inpt {
@@ -159,18 +166,21 @@
 
         .observaciones {
             position: relative;
-            left:0px;
-            top:-150px;
+            left: 60px;
+            top: -180px;
             margin-bottom:20px;
         }
+
+       
         .adicionales {
             position: relative;
-            bottom: 170px;
+            bottom: 190px;
         }
 
         .desayuno {
             position: relative;
             bottom: 180px;
+            left: 60px;
         }
 
         .desayuno input.inpt {
@@ -179,8 +189,8 @@
 
         .med-manana {
             position: relative;
-            bottom: 270px;
-            left: 300px;
+            bottom: 280px;
+            left: 360px;
         }
 
         .med-manana input.inpt {
@@ -189,8 +199,8 @@
 
         .med-tarde {
             position: relative;
-            bottom: 360px;
-            left: 600px;
+            bottom: 380px;
+            left: 660px;
         }
 
         .med-tarde input.inpt {
@@ -199,7 +209,8 @@
 
         .almuerzo {
             position: relative;
-            bottom: 355px;
+            bottom: 380px;
+            left: 60px;
         }
 
         .almuerzo input.inpt {
@@ -208,8 +219,8 @@
 
         .transporte {
             position: relative;
-            bottom: 440px;
-            left: 300px;
+            bottom: 480px;
+            left: 360px;
         }
 
         .transporte input.inpt {
@@ -218,8 +229,8 @@
         
         .derecho-grado {
             position: relative;
-            bottom: 525px;
-            left: 600px;
+            bottom: 580px;
+            left: 660px;
         }
 
         .derecho-grado input.inpt {
@@ -228,7 +239,8 @@
 
         .matricula {
             position: relative;
-            bottom: 520;
+            bottom: 580px;
+            left: 60px;
         }
 
         .matricula input.inpt {
@@ -239,7 +251,7 @@
             background-color: #039041;
             border: none;
             position: relative;
-            bottom: 570px;
+            bottom: 580px;
             color: #fff;
             font-size: 16px;
             width: 120px;
@@ -247,7 +259,7 @@
             cursor: pointer;
             border-radius: 10px;
             position: relative;
-            left: 680px;
+            left: 60px;
         }
         .btn {
             border: none;
@@ -255,6 +267,8 @@
 
         h3 {
             text-align: center;
+            position: relative;
+            left: 400px;
             border:2px solid #373232;
             border-radius: 10px;
             width: 450px;
@@ -262,7 +276,7 @@
     </style>
 </head>
 <header>
-    <h1>Pagos</h1>
+    <h1><b>Pagos</b></h1>
     <img src="public/images/logo-liceo.png" alt="">
 </header>
 <body>
@@ -300,7 +314,6 @@
             <input type="number" class="inpt" name="documento" id="documento" value="<?= isset($_POST["documento"]) ? $_POST["documento"] : ''; ?>">
         </div>
         <button class="btn-search mb-3  ">
-            <i class="fa-solid fa-magnifying-glass"></i>
             Buscar
         </button>
     </div>
