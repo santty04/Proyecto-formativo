@@ -59,15 +59,15 @@
         <h3>Pagos Realizados</h3>
         <div class="pagos">
             <p>Mes: '.$pago["mes"].'</p>
-            <p>Pension '.$pago["pension"].':</p>
-            <p>N° Recibo manual: '.$pago["recibo_manual"].'</p>
-            <p>Desayuno: '.$pago["desayuno"].'</p>
-            <p>Media mañana: '.$pago["media_manana"].'</p>
-            <p>Media tarde: '.$pago["media_tarde"].'</p>
-            <p>Almuerzo: '.$pago["almuerzo"].'</p>
-            <p>Transporte: '.$pago["transporte"].'</p>
-            <p>Derechos de grado: '.$pago["derecho_grado"].'</p>
-            <p>Matricula: '.$pago["matricula"].'</p>
+            <p>Pension $'.$pago["pension"].':</p>
+            <p>N° Recibo manual: $'.$pago["recibo_manual"].'</p>
+            <p>Desayuno: $'.$pago["desayuno"].'</p>
+            <p>Media mañana: $'.$pago["media_manana"].'</p>
+            <p>Media tarde: $'.$pago["media_tarde"].'</p>
+            <p>Almuerzo: $'.$pago["almuerzo"].'</p>
+            <p>Transporte: $'.$pago["transporte"].'</p>
+            <p>Derechos de grado: $'.$pago["derecho_grado"].'</p>
+            <p>Matricula: $'.$pago["matricula"].'</p>
             <p>Observaciones: '.$pago["observaciones"].'</p>
         </div>
     </div>

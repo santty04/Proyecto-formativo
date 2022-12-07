@@ -375,7 +375,7 @@
                 e.preventDefault()
                 $id = $(this).attr('data-id')
                 Swal.fire({
-                    text: "Desea activar al estudiante??",
+                    text: "Desea activar al estudiante?",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#212529',
