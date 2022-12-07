@@ -59,8 +59,8 @@
         <h3>Pagos Realizados</h3>
         <div class="pagos">
             <p>Mes: '.$pago["mes"].'</p>
-            <p>Pension $'.$pago["pension"].':</p>
-            <p>N° Recibo manual: $'.$pago["recibo_manual"].'</p>
+            <p>Pension: $'.$pago["pension"].'</p>
+            <p>N° Recibo manual: '.$pago["recibo_manual"].'</p>
             <p>Desayuno: $'.$pago["desayuno"].'</p>
             <p>Media mañana: $'.$pago["media_manana"].'</p>
             <p>Media tarde: $'.$pago["media_tarde"].'</p>
