@@ -380,4 +380,23 @@
                 echo $e->getMessage();
             }
         }
+
+        function viewPayment($conx, $id) {
+            try {
+                $sql = "select e.nombre as nombre_estudiante, e.apellidos as apellidos_estudiante, e.num_documento as num_documento_estudiante, e.grado , a.nombre as nombre_acudiente, a.apellidos as apellidos_acudiente, a.num_documento as num_documento_acudiente, p.factura_id as factura_id, p.fecha as fecha, p.mes as mes, p.pension as pension, p.num_recibo_manual as recibo_manual, p.observaciones as observaciones, d.desayuno as desayuno, d.media_manana as media_manana, d.media_tarde as media_tarde, d.almuerzo as almuerzo, d.transporte as transporte, d.derecho_grado as derecho_grado, d. matricula as matricula             
+                from pagos as p 
+                inner join estudiantes e ON (e.id = p.estudiantes_id)
+                inner join acudiente a ON (a.id_estudiante = e.id)
+                left join detalles d ON (d.pago_id = p.factura_id)
+                where p.factura_id = :id";
+                $stm = $conx->prepare($sql);
+                $stm->bindparam(":id", $id);
+                $stm->execute();
+                return $stm->fetch();
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+        }
+
+
     

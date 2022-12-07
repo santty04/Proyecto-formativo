@@ -14,14 +14,11 @@
 </head>
     <header>
         <h2>Base de datos | Liceo Aprender</h2>
-        <ul>
-            <li>
-                <a href="<?php echo $base_url . '/' ?>close.php">
-                    <i class="fa fa-times"></i>
-                    Close Session
-                </a>
-            </li>
-        </ul>
+        <button class="close"> 
+            <a class="closeSesion "href="<?php echo $base_url . '/' ?>close.php">
+                Close Session
+            </a>
+        </button>
         <div class="banner">
             <img class="users" src="images/users.svg" alt="">
             <h1>Bienvenido al panel del rector</h1>

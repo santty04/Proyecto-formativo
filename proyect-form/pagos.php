@@ -468,9 +468,9 @@ if(isset($_POST["documento"])) {
                             timer: 2000
                         })
                     </script>");
-                // echo "<script>
-                //         window.location.replace('dashboard-admin.php')
-                //       </script>";    
+                 echo "<script>
+                         document.location.href='pdf.php?id=".$id."';
+                       </script>";    
             }
              else {
                 echo ("Hola");
